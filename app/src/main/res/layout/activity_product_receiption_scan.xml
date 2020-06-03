@@ -78,7 +78,7 @@
         android:id="@+id/edt_LineInstockScanbarcode"
         style="@style/EditTextStyle"
         android:layout_width="0dp"
-        android:hint="请扫描条码"
+        android:hint="@string/edt_MoveScanBarcode"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="8dp"

@@ -15,7 +15,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="16dp"
-        android:hint="请输入盘点描述"
+        android:hint="@string/pecd"
         app:layout_constraintBottom_toBottomOf="@+id/textView20"
         app:layout_constraintLeft_toLeftOf="@+id/guideline47"
         app:layout_constraintRight_toRightOf="parent" />
@@ -29,7 +29,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="16dp"
-        android:hint="请扫描盘点库位"
+        android:hint="@string/pscl"
         app:layout_constraintBottom_toBottomOf="@+id/textView14"
         app:layout_constraintLeft_toLeftOf="@+id/guideline47"
         app:layout_constraintRight_toRightOf="parent" />
@@ -43,7 +43,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="16dp"
-        android:hint="请输入备注"
+        android:hint="@string/pe_remark"
         android:maxLines="2"
         app:layout_constraintBottom_toBottomOf="@+id/textView23"
         app:layout_constraintLeft_toLeftOf="@+id/guideline47"

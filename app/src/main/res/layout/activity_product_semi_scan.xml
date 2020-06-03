@@ -32,7 +32,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="16dp"
         android:gravity="left"
-        android:text="指定批"
+        android:text="@string/specified_batch"
         app:layout_constraintBottom_toBottomOf="@+id/textView137"
         app:layout_constraintRight_toRightOf="parent" />
 
@@ -89,7 +89,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="16dp"
         android:ems="10"
-        android:hint="请输入数量"
+        android:hint="@string/please_enter_quantity"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/txt_Unboxing"
         app:layout_constraintHorizontal_bias="1.0"
@@ -149,7 +149,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
         android:ems="10"
-        android:hint="请扫描条码"
+        android:hint="@string/edt_MoveScanBarcode"
         android:inputType="textPersonName"
         app:layout_constraintLeft_toRightOf="@+id/textView31"
         android:layout_marginLeft="16dp"

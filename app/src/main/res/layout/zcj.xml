@@ -70,7 +70,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="16dp"
         android:ems="10"
-        android:hint="请扫描条码"
+        android:hint="@string/edt_MoveScanBarcode"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/textView83"
         app:layout_constraintHorizontal_bias="1.0"

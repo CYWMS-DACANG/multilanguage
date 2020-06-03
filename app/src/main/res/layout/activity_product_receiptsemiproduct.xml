@@ -17,7 +17,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="16dp"
         android:gravity="center"
-        android:text="称重数据"
+        android:text="@string/weighing_data"
         android:textAlignment="center"
         android:textColor="@color/brown"
         android:textSize="36sp"
