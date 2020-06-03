@@ -49,8 +49,13 @@ import java.util.List;
 import java.util.Map;
 
 
-
-@ContentView(R.layout.activity_login)
+/**
+ * @desc:  大仓多语言翻译版本
+ * @param:
+ * @return:
+ * @author:
+ * @time 2020/6/3 14:11
+ */@ContentView(R.layout.activity_login)
 public class Login extends BaseActivity {
 
     String TAG="Loagin";
