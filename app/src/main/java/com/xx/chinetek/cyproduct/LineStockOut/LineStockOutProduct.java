@@ -143,7 +143,7 @@ public class LineStockOutProduct extends BaseActivity {
                         context, mHandler, RESULT_Msg_GetT_SaveBarCode, null,  URLModel.GetURL().Save_StockOutADF, params, null);
 
             }else{
-                MessageBox.Show(context,"没有需要出库的成品条码！");
+                MessageBox.Show(context,R.string.not_out_product_barcode);
             }
         }
         return super.onOptionsItemSelected(item);

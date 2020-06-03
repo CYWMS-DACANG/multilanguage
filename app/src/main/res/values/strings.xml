@@ -453,4 +453,5 @@
     <string name="AnalysisetT_GetAreaModelADFJson">扫描的货位不在登陆人的仓库下！</string>
     <string name="qty_format_error">数量格式错误！</string>
     <string name="return_label_print_success">退料标签补打成功</string>
+    <string name="not_out_product_barcode">没有需要出库的成品条码！</string>
 </resources>
