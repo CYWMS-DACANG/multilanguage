@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.xx.chinetek.Setting"
+    tools:layout_editor_absoluteY="25dp">
+
+
+    <EditText
+        android:id="@+id/edt_ElecIP"
+        style="@style/EditTextStyle"
+        android:layout_width="239dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:hint="请扫描电子称IP地址"
+        android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toBottomOf="@+id/textView11"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline45" />
+
+    <EditText
+        android:id="@+id/edt_PrintIP"
+        style="@style/EditTextStyle"
+        android:layout_width="239dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:hint="请扫描打印机IP地址"
+        android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toBottomOf="@+id/textView9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline45" />
+
+    <Button
+        android:id="@+id/btn_SaveSetting"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/bt_selector"
+        android:text="@string/Setting_Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/edt_TimeOut"
+        style="@style/EditTextStyle"
+        android:layout_width="195dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:hint="请输入超时时间"
+        android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toBottomOf="@+id/textView255"
+        app:layout_constraintEnd_toStartOf="@+id/textView256"
+        app:layout_constraintStart_toStartOf="@+id/guideline45" />
+
+    <EditText
+        android:id="@+id/edt_Port"
+        style="@style/EditTextStyle"
+        android:layout_width="239dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:hint="请输入服务器端口"
+        android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toBottomOf="@+id/textView254"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline45" />
+
+    <EditText
+        android:id="@+id/edt_IPAdress"
+        style="@style/EditTextStyle"
+        android:layout_width="239dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:hint="请输入服务器IP"
+        android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toBottomOf="@+id/textView253"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline45">
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView253"
+        style="@style/TextViewComminStyle"
+        android:layout_width="97dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/Setting_IPAdress"
+        app:layout_constraintEnd_toStartOf="@+id/guideline45"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView254"
+        style="@style/TextViewComminStyle"
+        android:layout_width="97dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/Setting_Port"
+        app:layout_constraintEnd_toStartOf="@+id/guideline45"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView253" />
+
+    <TextView
+        android:id="@+id/textView255"
+        style="@style/TextViewComminStyle"
+        android:layout_width="97dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/Setting_TimeOut"
+        app:layout_constraintEnd_toStartOf="@+id/guideline45"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView254" />
+
+    <TextView
+        android:id="@+id/textView9"
+        style="@style/TextViewComminStyle"
+        android:layout_width="97dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/Setting_PrintIP"
+        app:layout_constraintEnd_toStartOf="@+id/guideline45"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView255" />
+
+    <TextView
+        android:id="@+id/textView11"
+        style="@style/TextViewComminStyle"
+        android:layout_width="97dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/Setting_ElecScale"
+        app:layout_constraintEnd_toStartOf="@+id/guideline45"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/textView256"
+        style="@style/TextViewComminStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:text="@string/Setting_Second"
+        app:layout_constraintBottom_toBottomOf="@+id/textView255"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline45"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="263dp" />
+
+    <RadioGroup
+        android:layout_width="344dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="120dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <RadioButton
+            android:id="@+id/rb_WMS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.76"
+            android:text="仓库"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/rb_Product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.65"
+            android:text="车间"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+    </RadioGroup>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Receiption.ReceiptBillChoice">
+
+    <item
+        android:id="@+id/action_filter"
+        android:title="@string/submit"
+        android:orderInCategory="80"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_detail"
+        android:title="托盘列表"
+        android:orderInCategory="80"
+        app:showAsAction="ifRoom" />
+</menu>

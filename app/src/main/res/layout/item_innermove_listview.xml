@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.3">
+
+        <TextView
+            android:id="@+id/list_OutLoacl"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="left"
+            android:maxLines="1"
+            android:textColor="@color/green"
+            android:textSize="15sp" />
+
+
+        <TextView
+            android:id="@+id/list_SerialNo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="left"
+            android:maxLines="1"
+            android:textAlignment="textEnd"
+            android:textColor="@color/chocolate"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.8">
+
+        <TextView
+            android:id="@+id/list_MaterialNo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:gravity="left"
+            android:maxLines="1"
+            android:textColor="@color/blue_66f"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/list_qty"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:gravity="right"
+            android:maxLines="1"
+            android:textColor="@color/crimson"
+            android:textSize="15sp" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/list_MaterialDesc"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:maxLines="1"
+        android:textColor="@color/royalblue"
+        android:textSize="15sp" />
+</LinearLayout>
