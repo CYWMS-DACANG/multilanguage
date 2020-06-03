@@ -55,7 +55,8 @@ import java.util.Map;
  * @return:
  * @author:
  * @time 2020/6/3 14:11
- */@ContentView(R.layout.activity_login)
+ */
+@ContentView(R.layout.activity_login)
 public class Login extends BaseActivity {
 
     String TAG="Loagin";

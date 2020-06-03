@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CYWMS.iml" filepath="$PROJECT_DIR$/CYWMS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CYWMS-DACANG.iml" filepath="$PROJECT_DIR$/CYWMS-DACANG.iml" group="CYWMS-DACANG" />
+      <module fileurl="file://$PROJECT_DIR$/app/CYWMS-DACANG-app.iml" filepath="$PROJECT_DIR$/app/CYWMS-DACANG-app.iml" group="CYWMS-DACANG/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
