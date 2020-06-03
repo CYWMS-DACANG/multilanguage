@@ -205,7 +205,7 @@ public class ProductManageAdd extends BaseActivity {
             final Map<String, String> params = new HashMap<String, String>();
             params.put("UserNo", userCode);
             LogUtil.WriteLog(ProductManageAdd.class, TAG_GetT_UserInfoModel, userCode);
-            RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_UserInfoModel, "获取人员信息", context, mHandler, RESULT_GetT_UserInfoModel, null,  URLModel.GetURL().GetWareHouseByUserADF, params, null);
+            RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_UserInfoModel, context.getString(R.string.Msg_GetUser), context, mHandler, RESULT_GetT_UserInfoModel, null,  URLModel.GetURL().GetWareHouseByUserADF, params, null);
         } catch (Exception ex) {
             MessageBox.Show(context, ex.getMessage());
         }
@@ -232,7 +232,7 @@ public class ProductManageAdd extends BaseActivity {
             ReturnMsgModel<String> returnMsgModel = GsonUtil.getGsonUtil().fromJson(result, new TypeToken<ReturnMsgModel<String>>() {
             }.getType());
             if (returnMsgModel.getHeaderStatus().equals("S")) {
-                MessageBox.Show(context,"人员插入成功！");
+                MessageBox.Show(context,R.string.add_user_success);
 
                 Intent intent = new Intent(context, ProductMaterialConfig.class);
                 Bundle bundle = new Bundle();
@@ -259,7 +259,7 @@ public class ProductManageAdd extends BaseActivity {
             if (returnMsgModel.getHeaderStatus().equals("S")) {
                 if(returnMsgModel.getModelJson().equals("1")){
                     //不能插入
-                    MessageBox.Show(context,"该人员已经存在其他计划中，不能添加！");
+                    MessageBox.Show(context,R.string.person_exists_otherplan_cannot_add);
                     if(limuser!=null){
                             if(lineManageModel.getUserInfos()==null)
                                 lineManageModel.setUserInfos(new ArrayList<UserInfo>());
@@ -323,7 +323,7 @@ public class ProductManageAdd extends BaseActivity {
     }
 
     boolean RemoveUser(final  int index){
-        new AlertDialog.Builder(context) .setCancelable(false).setTitle(context.getString(R.string.hint)).setIcon(android.R.drawable.ic_dialog_info).setMessage("是否删除该员工？")
+        new AlertDialog.Builder(context) .setCancelable(false).setTitle(context.getString(R.string.hint)).setIcon(android.R.drawable.ic_dialog_info).setMessage(context.getString(R.string.confirm_delete_user))
                 .setPositiveButton(context.getString(R.string.config), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

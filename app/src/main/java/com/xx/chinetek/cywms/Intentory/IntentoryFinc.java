@@ -134,7 +134,7 @@ public class IntentoryFinc extends BaseActivity {
 
             new AlertDialog.Builder(context).setCancelable(false).setTitle(context.getString(R.string.hint)).setIcon(android.R.drawable.ic_dialog_info)
                     .setMessage(getString(R.string.Message_submit_finc))
-                    .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(context.getString(R.string.switch_yes), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             // TODO 自动生成的方法
@@ -143,7 +143,7 @@ public class IntentoryFinc extends BaseActivity {
                             LogUtil.WriteLog(IntentoryFinc.class, TAG_SummitMin, checkModel.getCHECKNO());
                             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SummitMin, getString(R.string.Msg_SaveT_InventoryADF), context, mHandler, RESULT_SummitMin, null,  URLModel.GetURL().SummitMin, params, null);
                         }
-                    }).setNegativeButton("否",null).show();
+                    }).setNegativeButton(context.getString(R.string.switch_not),null).show();
 
         }
         return super.onOptionsItemSelected(item);

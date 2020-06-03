@@ -125,6 +125,11 @@ public class IntentoryScan extends BaseActivity {
 
     @Override
     protected void initViews() {
+
+        QCStatus[0] = context.getString(R.string.test_sample);
+        QCStatus[1] = context.getString(R.string.qc_passed);
+        QCStatus[2] = context.getString(R.string.unqualified_inspection);
+
         super.initViews();
         BaseApplication.context = context;
         BaseApplication.toolBarTitle = new ToolBarTitle(getString(R.string.Intentory_subtitle), true);
@@ -165,7 +170,7 @@ public class IntentoryScan extends BaseActivity {
     @Event(value = R.id.txt_QCStatus,type =View.OnClickListener.class )
     private void txtQCStatusClick(View view){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("选择质检状态");
+        builder.setTitle(R.string.Select_Qc_Status);
         builder.setItems(QCStatus, new DialogInterface.OnClickListener()
         {
             @Override

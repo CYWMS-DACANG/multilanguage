@@ -156,7 +156,7 @@ public class LineStockOutProduct extends BaseActivity {
         try {
             if (returnMsgModel.getHeaderStatus().equals("S")) {
                 ClearFrm();
-                MessageBox.Show(context,"提交成功！");
+                MessageBox.Show(context,R.string.submit_success);
             } else {
                 MessageBox.Show(context,returnMsgModel.getMessage());
             }

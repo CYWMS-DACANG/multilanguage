@@ -42,8 +42,8 @@ public class MaterialChange extends BaseActivity {
         for(int i=0;i<7;i++){
             StockInfo_Model stockInfoModel=new StockInfo_Model();
             stockInfoModel.setSerialNo("34333"+i);
-            stockInfoModel.setBatchNo("批次号:"+"1234");
-            stockInfoModel.setMaterialDesc("物料描述");
+            stockInfoModel.setBatchNo(getString(R.string.batch_txt)+"1234");
+            stockInfoModel.setMaterialDesc(getString(R.string.material_desc));
             stockInfoModels.add(stockInfoModel);
         }
         return stockInfoModels;

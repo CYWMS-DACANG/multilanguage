@@ -183,7 +183,7 @@ public class ReportOutputNum extends BaseActivity {
                 String Fileter=barCodeM.getErpVoucherNo();
                 if (!Fileter.equals(txtNo.getText().toString()))
                 {
-                    MessageBox.Show(context, "扫描条码信息和工单号不一致！");
+                    MessageBox.Show(context, R.string.scan_barcode_inconsistent);
                     CommonUtil.setEditFocus(edtBarcode);
                     return;
                 }
@@ -340,7 +340,7 @@ public class ReportOutputNum extends BaseActivity {
             if (R.id.butO == view.getId()) {
                 if (womodel.getStrVoucherType().toString().equals(context.getString(R.string.finish_product)) && palletDetailModels != null && palletDetailModels.size() != 0 && palletDetailModels.get(0).getLstBarCode()!=null
                         && palletDetailModels.get(0).getLstBarCode().size()!=0){
-                    MessageBox.Show(context, "扫描的外箱还没有组托");
+                    MessageBox.Show(context, R.string.scan_outbox_pallet);
                     return;
                 }else{
                     if (Check()){
@@ -361,7 +361,7 @@ public class ReportOutputNum extends BaseActivity {
                         womodel.setVoucherType(37);
                         Path = URLModel.GetURL().GetFinishInStockByListWoinfo;
                     }else{
-                        MessageBox.Show(context, "成品入库的货位错误！");
+                        MessageBox.Show(context, R.string.product_instock_location_error);
                         return;
                     }
                     models.add(womodel);
@@ -396,7 +396,7 @@ public class ReportOutputNum extends BaseActivity {
                         Map<String, String> params = new HashMap<>();
                         if(womodel.getStrVoucherType().toString().equals(context.getString(R.string.finish_product))){
                             if(barcodemodel==null||barcodemodel.size()==0){
-                                MessageBox.Show(context, "扫描条码还没有组托，不能完工入库");
+                                MessageBox.Show(context, R.string.scan_barcode_pallet_not_instock);
                                 return;
                             }
                             else{
@@ -405,7 +405,7 @@ public class ReportOutputNum extends BaseActivity {
                         }else{
 
                             if(palletDetailModels.get(0).getLstBarCode()==null||palletDetailModels.get(0).getLstBarCode().size()==0){
-                                MessageBox.Show(context, "没有扫描条码，不能完工入库");
+                                MessageBox.Show(context, R.string.scan_barcode_not_instock);
                                 return;
                             }
                             else{
@@ -582,7 +582,7 @@ private String TaskNo="";
             if(returnMsgModel.getHeaderStatus().equals("S"))
             {
                 TaskNo=returnMsgModel.getTaskNo();
-                MessageBox.Show(context, "组托成功，托盘号："+TaskNo);
+                MessageBox.Show(context, getString(R.string.pallet_success_no)+TaskNo);
                 txtT.setText(String.valueOf(TaskNo));
                 InitFrm();
             }
@@ -639,7 +639,7 @@ private String TaskNo="";
             ReturnMsgModelList<Base_Model> returnMsgModel = GsonUtil.getGsonUtil().fromJson(result, new TypeToken<ReturnMsgModelList<Base_Model>>() {
             }.getType());
             if (returnMsgModel.getHeaderStatus().equals("S")) {
-                MessageBox.Show(context, "提交成功！");
+                MessageBox.Show(context, context.getString(R.string.submit_success));
                 //入库累加数量
 //                String[] txtNumTSplit = .getText().toString().split("/");
                 txtNumTP.setText(String.valueOf (Float.parseFloat(txtNumTP.getText().toString()) + Float.parseFloat(editTxtNumber.getText().toString())));
@@ -663,7 +663,7 @@ private String TaskNo="";
             ReturnMsgModelList<Base_Model> returnMsgModel = GsonUtil.getGsonUtil().fromJson(result, new TypeToken<ReturnMsgModelList<Base_Model>>() {
             }.getType());
             if (returnMsgModel.getHeaderStatus().equals("S")) {
-                MessageBox.Show(context, "提交成功！");
+                MessageBox.Show(context, context.getString(R.string.submit_success));
 
             } else {
                 MessageBox.Show(context, returnMsgModel.getMessage());
@@ -679,7 +679,7 @@ private String TaskNo="";
             ReturnMsgModelList<Base_Model> returnMsgModel = GsonUtil.getGsonUtil().fromJson(result, new TypeToken<ReturnMsgModelList<Base_Model>>() {
             }.getType());
             if (returnMsgModel.getHeaderStatus().equals("S")) {
-                MessageBox.Show(context, "提交成功！");
+                MessageBox.Show(context, context.getString(R.string.submit_success));
 
             } else {
                 MessageBox.Show(context, returnMsgModel.getMessage());

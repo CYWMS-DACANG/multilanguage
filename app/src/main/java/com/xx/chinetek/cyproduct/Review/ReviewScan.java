@@ -58,8 +58,8 @@ public class ReviewScan extends BaseActivity {
         List<ReceiptDetail_Model> receiptDetailModels=new ArrayList<>();
         for(int i=0;i<10;i++){
             ReceiptDetail_Model receiptDetailModel=new ReceiptDetail_Model();
-            receiptDetailModel.setMaterialNo("条码"+i);
-            receiptDetailModel.setMaterialDesc("物料描述"+i);
+            receiptDetailModel.setMaterialNo(getString(R.string.barcode_txt)+i);
+            receiptDetailModel.setMaterialDesc(context.getString(R.string.material_desc)+i);
             receiptDetailModel.setScanQty(1f);
             receiptDetailModels.add(receiptDetailModel);
         }

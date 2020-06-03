@@ -47,10 +47,10 @@ public class ReportOutput extends BaseActivity {
         List<ReportOutputModel> ReportOutputModels=new ArrayList<>();
         for(int i=0;i<10;i++){
             ReportOutputModel ReportOutputModel=new ReportOutputModel();
-            ReportOutputModel.setProductReportID("工单号：123"+i);
-            ReportOutputModel.setReportBatch("生产批次"+i);
+            ReportOutputModel.setProductReportID(getString(R.string.work_order_No)+"123"+i);
+            ReportOutputModel.setReportBatch(getString(R.string.production_batch)+i);
             ReportOutputModel.setReportNum(2.0f);
-            ReportOutputModel.setLastReportTime("最后报量时间：05/24 11：00");
+            ReportOutputModel.setLastReportTime(getString(R.string.last_report_time)+"05/24 11：00");
             ReportOutputModels.add(ReportOutputModel);
         }
         return ReportOutputModels;

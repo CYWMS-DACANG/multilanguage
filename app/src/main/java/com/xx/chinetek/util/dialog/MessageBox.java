@@ -63,7 +63,7 @@ public class MessageBox {
     }
 
     public static void Show(Context context, String message, EditText recivceTEXT, EditText sendTEXT) {
-        AlertDialog dialog = new AlertDialog.Builder(context).setCancelable(false).setTitle(context.getString(R.string.hint)).setMessage(message).setPositiveButton("是", null).create();
+        AlertDialog dialog = new AlertDialog.Builder(context).setCancelable(false).setTitle(context.getString(R.string.hint)).setMessage(message).setPositiveButton(context.getString(R.string.switch_yes), null).create();
         final EditText RecivceTEXT = recivceTEXT;
         final EditText SendTEXT = sendTEXT;
         dialog.setOnShowListener(new OnShowListener() {

@@ -303,7 +303,7 @@ public class ProductMaterialConfig extends BaseActivity {
             ReturnMsgModel<Base_Model> returnMsgModel = GsonUtil.getGsonUtil().fromJson(result, new TypeToken<ReturnMsgModel<Base_Model>>() {
             }.getType());
             if (returnMsgModel.getHeaderStatus().equals("S")) {
-                MessageBox.Show(context,"开始成功！");
+                MessageBox.Show(context,R.string.start_success);
             } else {
                 MessageBox.Show(context, returnMsgModel.getMessage());
             }
@@ -316,7 +316,7 @@ public class ProductMaterialConfig extends BaseActivity {
             ReturnMsgModel<Base_Model> returnMsgModel = GsonUtil.getGsonUtil().fromJson(result, new TypeToken<ReturnMsgModel<Base_Model>>() {
             }.getType());
             if (returnMsgModel.getHeaderStatus().equals("S")) {
-                MessageBox.Show(context,"提交数据成功！");
+                MessageBox.Show(context,R.string.submit_data_success);
             } else {
                 MessageBox.Show(context, returnMsgModel.getMessage());
             }
@@ -425,7 +425,7 @@ public class ProductMaterialConfig extends BaseActivity {
                 }
                 if(flag){
                     //不齐套
-                    new AlertDialog.Builder(context) .setCancelable(false).setTitle(context.getString(R.string.hint)).setIcon(android.R.drawable.ic_dialog_info).setMessage("扫描物料不齐套，是否继续提交？")
+                    new AlertDialog.Builder(context) .setCancelable(false).setTitle(context.getString(R.string.hint)).setIcon(android.R.drawable.ic_dialog_info).setMessage(context.getString(R.string.confirm_scan_material_not_complete))
                             .setPositiveButton(context.getString(R.string.config), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -451,7 +451,7 @@ public class ProductMaterialConfig extends BaseActivity {
             Map<String, String> params = new HashMap<>();
             params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
             params.put("ModelJson", GsonUtil.parseModelToJson(AllBarcode));
-            RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveBarcodeListForQiTao, "数据正在提交", context, mHandler, RESULT_SaveBarcodeListForQiTao, null,  URLModel.GetURL().SaveBarcodeListForQiTao, params, null);
+            RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveBarcodeListForQiTao, getString(R.string.process_submit_data), context, mHandler, RESULT_SaveBarcodeListForQiTao, null,  URLModel.GetURL().SaveBarcodeListForQiTao, params, null);
         } catch (Exception ex) {
             MessageBox.Show(context, ex.getMessage());
         }

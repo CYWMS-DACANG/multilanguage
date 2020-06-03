@@ -125,14 +125,14 @@ public class ReportBaojian extends BaseActivity {
     private void onClick(View view) {
         try{
             if(edtBarcode.getText().toString().isEmpty()||edtBarcode.getText().toString().length()>10){
-                MessageBox.Show(context, "完工报检批次号输入不正确！");
+                MessageBox.Show(context, R.string.report_baojian_batch_error);
                 return;
             }else{
                 womodel.setBatchNo(edtBarcode.getText().toString());
             }
 
             if(womodel.getBatchNo()==null||womodel.getBatchNo().toString().isEmpty()){
-                MessageBox.Show(context, "完工报检批次号不能为空！");
+                MessageBox.Show(context, R.string.report_baojian_batch_isempty);
             }else{
                 final Map<String, String> params = new HashMap<String, String>();
                 UerInfo user =BaseApplication.userInfo;

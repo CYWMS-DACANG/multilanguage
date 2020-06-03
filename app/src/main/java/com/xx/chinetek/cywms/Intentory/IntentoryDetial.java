@@ -106,7 +106,7 @@ Context context=IntentoryDetial.this;
     private  boolean lsvInventoryDetailLongClick(AdapterView<?> parent, View view, final int position, long id){
         if(id>=0 && model==1) {
             final Barcode_Model delBarcode=(Barcode_Model)inventoryScanItemAdapter.getItem(position);
-            new AlertDialog.Builder(context).setTitle(context.getString(R.string.hint)).setCancelable(false).setIcon(android.R.drawable.ic_dialog_info).setMessage("是否删除盘点记录？")
+            new AlertDialog.Builder(context).setTitle(context.getString(R.string.hint)).setCancelable(false).setIcon(android.R.drawable.ic_dialog_info).setMessage(R.string.confirm_delete_check)
                     .setPositiveButton(context.getString(R.string.config), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

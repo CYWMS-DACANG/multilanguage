@@ -179,7 +179,7 @@ Context context=ProductManage.this;
     void Getstate(){
         final Map<String, String> params = new HashMap<String, String>();
         params.put("modelid", String.valueOf(lineManageModel.getID()));
-        RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetLinemanagestate, "获取计划状态", context, mHandler, RESULT_GetLinemanagestate, null,  URLModel.GetURL().GetLinemanagestate, params, null);
+        RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetLinemanagestate, getString(R.string.get_plan_status), context, mHandler, RESULT_GetLinemanagestate, null,  URLModel.GetURL().GetLinemanagestate, params, null);
 
     }
 
@@ -201,7 +201,7 @@ Context context=ProductManage.this;
                 if(FlagBut.equals("buttonov")){
                     GetUserInfo(code);
                 }else{
-                    MessageBox.Show(context,"生产计划在创建和暂停状态才能删除添加人员！");
+                    MessageBox.Show(context,R.string.confirm_person_plan_status);
                 }
             }
 
@@ -223,7 +223,7 @@ Context context=ProductManage.this;
             if (R.id.buttonBao == view.getId()) {
                 //报工
                 if(txtbaogong.getText().toString().equals("")||(!CommonUtil.isFloat(txtbaogong.getText().toString()))){
-                    MessageBox.Show(context,"报工数格式不正确！");
+                    MessageBox.Show(context,context.getString(R.string.work_format_error));
                     return;
                 }
 
@@ -252,7 +252,7 @@ Context context=ProductManage.this;
                 final Map<String, String> paramsa = new HashMap<String, String>();
                 paramsa.put("UserJson", userJsona);
                 paramsa.put("WoInfoJson", modelJsona);
-                RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_BaogongADF,  "正在报工中", context, mHandler, RESULT_BaogongADF, null, URLModel.GetURL().GetBaoGongByListWoinfo, paramsa, null);
+                RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_BaogongADF,  getString(R.string.process_work_report), context, mHandler, RESULT_BaogongADF, null, URLModel.GetURL().GetBaoGongByListWoinfo, paramsa, null);
 
             }
             if (R.id.butopen == view.getId()) {
@@ -261,11 +261,11 @@ Context context=ProductManage.this;
                 final Map<String, String> params = new HashMap<String, String>();
                 params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
                 params.put("modelid", String.valueOf(lineManageModel.getID()));
-                RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_StartWork, "开工", context, mHandler, RESULT_StartWork, null,  URLModel.GetURL().StartWork, params, null);
+                RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_StartWork, context.getString(R.string.StartProduct), context, mHandler, RESULT_StartWork, null,  URLModel.GetURL().StartWork, params, null);
             }
             if (R.id.buttonstop == view.getId()) {
                 if(txtbaogong.getText().toString().equals("")||(!CommonUtil.isFloat(txtbaogong.getText().toString()))){
-                    MessageBox.Show(context,"报工数格式不正确！");
+                    MessageBox.Show(context,R.string.work_format_error);
                     return;
                 }
                 FlagBut="buttonstop";
@@ -274,7 +274,7 @@ Context context=ProductManage.this;
                 final Map<String, String> params = new HashMap<String, String>();
                 params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
                 params.put("modelid", String.valueOf(lineManageModel.getID()));
-                RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_OverWork, "完工", context, mHandler, RESULT_OverWork, null,  URLModel.GetURL().OverWork, params, null);
+                RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_OverWork, context.getString(R.string.ReportOver), context, mHandler, RESULT_OverWork, null,  URLModel.GetURL().OverWork, params, null);
 
             }
             if (R.id.buttonov == view.getId()) {
@@ -284,7 +284,7 @@ Context context=ProductManage.this;
                 params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
                 params.put("modelid", String.valueOf(lineManageModel.getID()));
                 params.put("Flag", "1");
-                RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SuspendOrReWork, "暂停", context, mHandler, RESULT_SuspendOrReWork, null,  URLModel.GetURL().SuspendOrReWork, params, null);
+                RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SuspendOrReWork, getString(R.string.suspend), context, mHandler, RESULT_SuspendOrReWork, null,  URLModel.GetURL().SuspendOrReWork, params, null);
 
             }
             if (R.id.buttonovre == view.getId()) {
@@ -294,7 +294,7 @@ Context context=ProductManage.this;
                 params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
                 params.put("modelid", String.valueOf(lineManageModel.getID()));
                 params.put("Flag", "2");
-                RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SuspendOrReWork, "重新开始", context, mHandler, RESULT_SuspendOrReWork, null,  URLModel.GetURL().SuspendOrReWork, params, null);
+                RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SuspendOrReWork, getString(R.string.restart), context, mHandler, RESULT_SuspendOrReWork, null,  URLModel.GetURL().SuspendOrReWork, params, null);
 
             }
             if (R.id.btn_MaterialConfig == view.getId()) {
@@ -316,7 +316,7 @@ Context context=ProductManage.this;
             final Map<String, String> params = new HashMap<String, String>();
             params.put("UserNo", userCode);
             LogUtil.WriteLog(ProductManage.class, TAG_GetT_UserInfoModel, userCode);
-            RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_UserInfoModel, "获取人员信息", context, mHandler, RESULT_GetT_UserInfoModel, null,  URLModel.GetURL().GetWareHouseByUserADF, params, null);
+            RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_UserInfoModel, context.getString(R.string.Msg_GetUser), context, mHandler, RESULT_GetT_UserInfoModel, null,  URLModel.GetURL().GetWareHouseByUserADF, params, null);
         } catch (Exception ex) {
             MessageBox.Show(context, ex.getMessage());
         }
@@ -343,7 +343,7 @@ Context context=ProductManage.this;
                         params.put("model", GsonUtil.parseModelToJson(lineManageModel));
                         params.put("userno", userInfo.getUserNo());
                         params.put("flag", "1");
-                        RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_UpdateLineManageUser, "添加人员中", context, mHandler, RESULT_UpdateLineManageUser, null,  URLModel.GetURL().UpdateLineManageUser, params, null);
+                        RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_UpdateLineManageUser, getString(R.string.add_user), context, mHandler, RESULT_UpdateLineManageUser, null,  URLModel.GetURL().UpdateLineManageUser, params, null);
 
                     }else{
                         //删除用户人员
@@ -429,10 +429,10 @@ Context context=ProductManage.this;
                     final Map<String, String> paramsa = new HashMap<String, String>();
                     paramsa.put("UserJson", userJsona);
                     paramsa.put("WoInfoJson", modelJsona);
-                    RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_BaogongADF,  "正在报工中", context, mHandler, RESULT_BaogongADF, null, URLModel.GetURL().GetBaoGongByListWoinfo, paramsa, null);
+                    RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_BaogongADF,  context.getString(R.string.process_work_report), context, mHandler, RESULT_BaogongADF, null, URLModel.GetURL().GetBaoGongByListWoinfo, paramsa, null);
 
                 }
-                MessageBox.Show(context,"操作成功！");
+                MessageBox.Show(context,R.string.operat_success);
             } else {
                 MessageBox.Show(context, returnMsgModel.getMessage());
             }
@@ -448,7 +448,7 @@ Context context=ProductManage.this;
             }.getType());
             if (returnMsgModel.getHeaderStatus().equals("S")) {
             } else {
-                MessageBox.Show(context, "该人员已经存在其他生产计划中，不能添加！");
+                MessageBox.Show(context, R.string.user_exists_other_plan);
 
                 if (limuser != null ){
                     if(lineManageModel.getUserInfos()==null)
@@ -491,7 +491,7 @@ Context context=ProductManage.this;
 //                final Map<String, String> paramsa = new HashMap<String, String>();
 //                paramsa.put("UserJson", userJsona);
 //                paramsa.put("WoInfoJson", modelJsona);
-//                RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_BaogongADF,  "正在报工中", context, mHandler, RESULT_BaogongADF, null, URLModel.GetURL().GetBaoGongByListWoinfo, paramsa, null);
+//                RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_BaogongADF,  context.getString(R.string.process_work_report), context, mHandler, RESULT_BaogongADF, null, URLModel.GetURL().GetBaoGongByListWoinfo, paramsa, null);
 
 
             }else{
@@ -505,7 +505,7 @@ Context context=ProductManage.this;
 
 
     boolean RemoveUser(final  int index){
-        new AlertDialog.Builder(context) .setCancelable(false).setTitle(context.getString(R.string.hint)).setIcon(android.R.drawable.ic_dialog_info).setMessage("是否删除该员工？")
+        new AlertDialog.Builder(context) .setCancelable(false).setTitle(context.getString(R.string.hint)).setIcon(android.R.drawable.ic_dialog_info).setMessage(context.getString(R.string.confirm_delete_user))
                 .setPositiveButton(context.getString(R.string.config), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -514,7 +514,7 @@ Context context=ProductManage.this;
                         params.put("model", GsonUtil.parseModelToJson(lineManageModel));
                         params.put("userno", lineManageModel.getUserInfos().get(index).getUserNo());
                         params.put("flag", "2");
-                        RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_UpdateLineManageUser, "删除人员中", context, mHandler, RESULT_UpdateLineManageUser, null,  URLModel.GetURL().UpdateLineManageUser, params, null);
+                        RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_UpdateLineManageUser, getString(R.string.process_delete_user), context, mHandler, RESULT_UpdateLineManageUser, null,  URLModel.GetURL().UpdateLineManageUser, params, null);
 
                         lineManageModel.getUserInfos().remove(index);
                         BindListView(lineManageModel.getUserInfos());

@@ -42,8 +42,8 @@ public class TakeSample extends BaseActivity {
         for(int i=0;i<7;i++){
             StockInfo_Model stockInfoModel=new StockInfo_Model();
             stockInfoModel.setSerialNo("34333"+i);
-            stockInfoModel.setBatchNo("取样数量："+"12");
-            stockInfoModel.setMaterialDesc("物料描述");
+            stockInfoModel.setBatchNo(context.getString(R.string.TakeSampleNumber)+"12");
+            stockInfoModel.setMaterialDesc(context.getString(R.string.material_desc));
             stockInfoModels.add(stockInfoModel);
         }
         return stockInfoModels;
