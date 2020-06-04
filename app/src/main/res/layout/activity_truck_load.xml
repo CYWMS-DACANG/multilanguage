@@ -34,7 +34,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="16dp"
         android:gravity="left"
-        android:hint="点击选择目的地"
+        android:hint="@string/click_select_destination"
         app:layout_constraintBottom_toBottomOf="@+id/textView146"
         app:layout_constraintLeft_toRightOf="@+id/textView146"
         app:layout_constraintRight_toRightOf="parent" />
@@ -50,7 +50,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="16dp"
         android:gravity="left"
-        android:hint="点击选择承运商"
+        android:hint="@string/click_select_carrier"
         app:layout_constraintBottom_toBottomOf="@+id/textView145"
         app:layout_constraintLeft_toRightOf="@+id/textView145"
         app:layout_constraintRight_toRightOf="parent" />
@@ -65,7 +65,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="16dp"
-        android:hint="请输入运费"
+        android:hint="@string/please_enter_freight"
         app:layout_constraintBottom_toBottomOf="@+id/textView102"
         app:layout_constraintLeft_toLeftOf="@+id/guideline22"
         app:layout_constraintRight_toRightOf="parent" />
@@ -80,7 +80,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="16dp"
-        android:hint="请输入件数"
+        android:hint="@string/pepic"
         app:layout_constraintBottom_toBottomOf="@+id/textView101"
         app:layout_constraintLeft_toRightOf="@+id/textView101"
         app:layout_constraintRight_toRightOf="parent" />
@@ -95,7 +95,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="16dp"
-        android:hint="请输入重量"
+        android:hint="@string/please_enter_weight"
         app:layout_constraintBottom_toBottomOf="@+id/textView100"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toRightOf="@+id/textView100"
@@ -111,7 +111,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="16dp"
-        android:hint="请输入体积"
+        android:hint="@string/please_enter_volume"
         app:layout_constraintBottom_toBottomOf="@+id/textView99"
         app:layout_constraintLeft_toRightOf="@+id/textView99"
         app:layout_constraintRight_toRightOf="parent" />
@@ -126,7 +126,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="16dp"
-        android:hint="请输入车牌"
+        android:hint="@string/please_enter_plate"
         app:layout_constraintBottom_toBottomOf="@+id/textView98"
         app:layout_constraintLeft_toRightOf="@+id/textView98"
         app:layout_constraintRight_toRightOf="parent" />

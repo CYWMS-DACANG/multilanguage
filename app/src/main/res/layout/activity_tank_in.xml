@@ -16,7 +16,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="16dp"
         android:ems="10"
-        android:hint="请扫描坦克编号"
+        android:hint="@string/pstn"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/textView199"
         app:layout_constraintLeft_toRightOf="@+id/textView199"

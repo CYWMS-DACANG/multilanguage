@@ -80,7 +80,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0.1"
                     android:maxLines="1"
-                    android:text="供："
+                    android:text="@string/provide_txt"
                     android:textColor="@color/turquoise"
                     android:textSize="15sp" />
 

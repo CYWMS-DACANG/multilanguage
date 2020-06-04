@@ -546,7 +546,6 @@
     <string name="pefq">请输入完工数量</string>
     <string name="pewn">请输入报工数</string>
     <string name="start">开始</string>
-    <string name="suspend">暂停</string>
     <string name="please_scan_employees">请扫描员工</string>
     <string name="number_report">报工数：</string>
     <string name="input_batchno">输入批次</string>
@@ -556,6 +555,42 @@
     <string name="peppq">请输入预生产数量</string>
     <string name="psst">请选择开工时间</string>
     <string name="specified_batch">指定批</string>
-
+    <string name="isq_woq">入库数/工单数：</string>
+    <string name="piosb">请输入或扫描条码</string>
+    <string name="work_order_No_2">工 单 号：</string>
+    <string name="pewonowob">请输入工单号或工单批次</string>
+    <string name="stock_location2">库 位：</string>
+    <string name="production_txt2">产 量：</string>
+    <string name="out_box_qty">外箱数量：</string>
+    <string name="pallet_no_2">托 盘 号：</string>
+    <string name="submit_directly">直接提交</string>
+    <string name="edt_elecip">请扫描电子称IP地址</string>
+    <string name="edt_printip">请扫描打印机IP地址</string>
+    <string name="edt_timeout">请输入超时时间</string>
+    <string name="edt_Port">请输入服务器端口</string>
+    <string name="edt_IPAdress">请输入服务器IP</string>
+    <string name="rb_WMS">仓库</string>
+    <string name="rb_Product">车间</string>
+    <string name="perq">请输入返回取样数量</string>
+    <string name="pesn">请输入取样数量</string>
+    <string name="pssb">请扫描取样条码</string>
+    <string name="pstn">请扫描坦克编号</string>
+    <string name="click_select_destination">点击选择目的地</string>
+    <string name="click_select_carrier">点击选择承运商</string>
+    <string name="please_enter_freight">请输入运费</string>
+    <string name="pepic">请输入件数</string>
+    <string name="please_enter_weight">请输入重量</string>
+    <string name="please_enter_volume">请输入体积</string>
+    <string name="please_enter_plate">请输入车牌</string>
+    <string name="please_scan_area_no">请扫描库位编码</string>
+    <string name="text">文字</string>
+    <string name="work_order_qty">工单数：</string>
+    <string name="provide_txt">供：</string>
+    <string name="txt_Batch">批次</string>
+    <string name="material_name">物料名称</string>
+    <string name="inspected">已质检</string>
+    <string name="edit">编辑</string>
+    <string name="full_scan">齐套扫描</string>
+    <string name="pallet_list">托盘列表</string>
 
 </resources>

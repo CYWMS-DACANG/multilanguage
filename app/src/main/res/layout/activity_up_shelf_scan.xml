@@ -88,7 +88,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="16dp"
         android:ems="10"
-        android:hint="请扫描库位编码"
+        android:hint="@string/please_scan_area_no"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/textView2"
         app:layout_constraintHorizontal_bias="1.0"

@@ -6,7 +6,7 @@
 
     <item
         android:id="@+id/action_edit"
-        android:title="编辑"
+        android:title="@string/edit"
         android:orderInCategory="80"
         app:showAsAction="ifRoom" />
 

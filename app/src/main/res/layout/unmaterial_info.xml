@@ -14,7 +14,7 @@
         android:layout_marginBottom="0dp"
         android:layout_marginRight="5dp"
         android:layout_marginStart="16dp"
-        android:text="有效期"
+        android:text="@string/EDate"
         android:textColor="@color/brown"
         app:layout_constraintBottom_toBottomOf="@+id/txt_unStatus"
         app:layout_constraintRight_toRightOf="parent" />
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:text="据点"
+        android:text="@string/stronghold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp" />
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:text="批次"
+        android:text="@string/txt_Batch"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/txt_unCompany"
         app:layout_constraintLeft_toRightOf="@+id/txt_unCompany" />
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:text="已质检"
+        android:text="@string/inspected"
         app:layout_constraintBottom_toBottomOf="@+id/txt_unCompany"
         app:layout_constraintLeft_toRightOf="@+id/txt_unBatch" />
 
@@ -67,7 +67,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:maxLines="1"
-        android:text="物料名称"
+        android:text="@string/material_name"
         android:textAlignment="viewStart"
         android:textColor="@color/darkblue"
         android:textSize="20sp"

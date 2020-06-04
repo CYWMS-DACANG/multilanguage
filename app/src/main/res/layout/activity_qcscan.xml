@@ -105,7 +105,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="16dp"
         android:ems="10"
-        android:hint="请输入拆零数量"
+        android:hint="@string/pesq"
         android:inputType="textPersonName"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/txt_unboxing"

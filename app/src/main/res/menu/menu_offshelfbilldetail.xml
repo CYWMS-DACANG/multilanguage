@@ -12,7 +12,7 @@
 
     <item
         android:id="@+id/action_detail"
-        android:title="托盘列表"
+        android:title="@string/pallet_list"
         android:orderInCategory="80"
         app:showAsAction="ifRoom" />
 </menu>

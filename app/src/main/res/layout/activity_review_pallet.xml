@@ -57,7 +57,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
         android:background="@drawable/bt_selector"
-        android:text="直接提交"
+        android:text="@string/submit_directly"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"

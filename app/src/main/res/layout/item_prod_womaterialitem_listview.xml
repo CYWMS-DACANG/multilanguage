@@ -55,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:maxLines="1"
-                    android:text="工单数："
+                    android:text="@string/work_order_qty"
                     android:textColor="@color/mediumblue"
                     android:textSize="15sp" />
 
@@ -73,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:maxLines="1"
-                    android:text="扫描数："
+                    android:text="@string/scan_qty"
                     android:textColor="@color/red"
                     android:textSize="15sp" />
 
