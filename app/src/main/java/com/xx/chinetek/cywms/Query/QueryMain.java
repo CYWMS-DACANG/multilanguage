@@ -50,6 +50,10 @@ public class QueryMain extends BaseActivity {
         String[] itemNames = new String[]{"物料","库位", "批次",
                 "供应商"
         };
+        itemNames[0]=context.getString(R.string.query_Materialtitle);
+        itemNames[1]=context.getString(R.string.query_Stocktitle);
+        itemNames[2]=context.getString(R.string.query_Stocktitle);
+        itemNames[3]=context.getString(R.string.query_Suppliertitle);
         //cion和iconName的长度是相同的，这里任选其一都可以
         for(int i=0;i<itemIcon.length;i++){
             Map<String, Object> map = new HashMap<String, Object>();

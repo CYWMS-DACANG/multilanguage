@@ -45,8 +45,8 @@ public class UpshelfBillDetail extends BaseActivity {
             receiptDetailModel.setMaterialNo("123455"+i);
             receiptDetailModel.setMaterialDesc(context.getString(R.string.material_desc)+i);
             receiptDetailModel.setScanQty(1f);
-            receiptDetailModel.setCompany("据点");
-            receiptDetailModel.setDepartment("部门");
+            receiptDetailModel.setCompany(context.getString(R.string.stronghold));
+            receiptDetailModel.setDepartment(context.getString(R.string.dept_item));
             receiptDetailModels.add(receiptDetailModel);
         }
         return receiptDetailModels;

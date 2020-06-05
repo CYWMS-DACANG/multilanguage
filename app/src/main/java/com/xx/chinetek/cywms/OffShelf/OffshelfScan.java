@@ -202,7 +202,7 @@ public class OffshelfScan extends BaseActivity {
             ReturnMsgModel<Base_Model> returnMsgModel = GsonUtil.getGsonUtil().fromJson(result, new TypeToken<ReturnMsgModel<Base_Model>>() {
             }.getType());
             if(returnMsgModel.getHeaderStatus().equals("S")){
-                MessageBox.Show(context, "拆托成功！");
+                MessageBox.Show(context, R.string.remove_pallet_success);
             }
             else{
                 MessageBox.Show(context, returnMsgModel.getMessage());
@@ -239,9 +239,9 @@ public class OffshelfScan extends BaseActivity {
 //                            outStockTaskDetailsInfoModels.get(currentPickMaterialIndex).getScanQty());
                     if (SumReaminQty < qty) {//qty > remainqty ||
                         MessageBox.Show(context, getString(R.string.Error_offshelfQtyBiger)
-                                +"\n需下架数量："+SumReaminQty
-                                +"\n扫描数量："+qty
-                                +"\n拆零后剩余数量："+ArithUtil.sub(qty,SumReaminQty));
+                                +"\n"+getString(R.string.offshelf_qty)+SumReaminQty
+                                +"\n"+context.getString(R.string.ScanNumber)+qty
+                                +"\n"+getString(R.string.remove_remain_qty)+ArithUtil.sub(qty,SumReaminQty));
                         CommonUtil.setEditFocus(edtUnboxing);
                         return true;
                     }
@@ -279,11 +279,11 @@ public class OffshelfScan extends BaseActivity {
             int type=tbPalletType.isChecked()?1:(tbBoxType.isChecked()?2:3);
             //托盘只能扫描托盘条码
             if(type==1&&code.equals("")){
-                MessageBox.Show(context,"先扫描条码再回车!");
+                MessageBox.Show(context,R.string.scan_barcode_first_enter);
                 return false;
             }
             if(type==1&&(!code.substring(0,1).equals("P"))){
-                MessageBox.Show(context,"下架托盘必须要扫描托盘条码!");
+                MessageBox.Show(context,R.string.offshelf_pallet_must_scan_barcode);
                 return false;
             }
 
@@ -307,7 +307,7 @@ public class OffshelfScan extends BaseActivity {
         if (currentPickMaterialIndex!=-1) {
             final String MaterialDesc = outStockTaskDetailsInfoModels.get(currentPickMaterialIndex).getMaterialDesc();
             final String MaterialNo = outStockTaskDetailsInfoModels.get(currentPickMaterialIndex).getMaterialNo();
-            new AlertDialog.Builder(context).setCancelable(false).setTitle(context.getString(R.string.hint)).setIcon(android.R.drawable.ic_dialog_info).setMessage("是否跳过物料：\n" +MaterialNo+"\n"+MaterialDesc + "\n拣货？")
+            new AlertDialog.Builder(context).setCancelable(false).setTitle(context.getString(R.string.hint)).setIcon(android.R.drawable.ic_dialog_info).setMessage(getString(R.string.confirm_skip_material)+"\n" +MaterialNo+"\n"+MaterialDesc + "\n"+getString(R.string.isPicking)+"？")
                     .setPositiveButton(context.getString(R.string.config), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -401,7 +401,7 @@ public class OffshelfScan extends BaseActivity {
 
                     //判断下架扫描的条码是否是当前的登陆仓
                     if(!stockInfoModels.get(0).getWarehouseNo().equals(BaseApplication.userInfo.getPickWareHouseNo())){
-                        MessageBox.Show(context, "扫描的条码所属的仓库【"+stockInfoModels.get(0).getWarehouseNo()+"】和登陆仓库【"+BaseApplication.userInfo.getPickWareHouseNo()+"】不一致");
+                        MessageBox.Show(context, getString(R.string.scan_warehouse_barcode)+stockInfoModels.get(0).getWarehouseNo()+getString(R.string.and_login_warehouse)+BaseApplication.userInfo.getPickWareHouseNo()+"】"+getString(R.string.atypism));
                         CommonUtil.setEditFocus(edtOffShelfScanbarcode);
                         return;
                     }
@@ -416,7 +416,7 @@ public class OffshelfScan extends BaseActivity {
                         if(tbBoxType.isChecked()&&stockInfoModels.get(0).getPalletNo()!=""&&stockInfoModels.get(0).getPalletNo()!=null){
                             new AlertDialog.Builder(context).setTitle(context.getString(R.string.hint))
                                     .setIcon(android.R.drawable.ic_dialog_info)
-                                    .setMessage("是否删除该托盘【"+stockInfoModels.get(0).getPalletNo()+"】信息？")
+                                    .setMessage(getString(R.string.confirm_delete_pallet)+"【"+stockInfoModels.get(0).getPalletNo()+"】"+getString(R.string.information)+"？")
                                     .setCancelable(false)
                                     .setPositiveButton(context.getString(R.string.config), new DialogInterface.OnClickListener() {
                                         @Override
@@ -581,9 +581,9 @@ public class OffshelfScan extends BaseActivity {
 //        if (qty< scanQty ||  SumReaminQty<scanQty ) {
        if (SumReaminQty<scanQty ) {
             MessageBox.Show(context, getString(R.string.Error_offshelfQtyBiger)
-                    +"\n需下架数量："+SumReaminQty
-                    +"\n扫描数量："+scanQty
-                    +"\n拆零后剩余数量："+ArithUtil.sub(scanQty,SumReaminQty));
+                    +"\n"+context.getString(R.string.offshelf_qty)+SumReaminQty
+                    +"\n"+context.getString(R.string.ScanNumber)+scanQty
+                    +"\n"+context.getString(R.string.remove_remain_qty)+ArithUtil.sub(scanQty,SumReaminQty));
            stockInfoModels=new ArrayList<>();
            CommonUtil.setEditFocus(edtOffShelfScanbarcode);
             return;
@@ -736,7 +736,7 @@ public class OffshelfScan extends BaseActivity {
         //判断是否指定批次
         if(currentOustStock.getIsSpcBatch().toUpperCase().equals("Y")){
             if(!currentOustStock.getFromBatchNo().equals(stockInfoModels.get(0).getBatchNo())){
-                MessageBox.Show(context, getString(R.string.Error_batchNONotMatch)+"|批次号："+currentOustStock.getFromBatchNo());
+                MessageBox.Show(context, getString(R.string.Error_batchNONotMatch)+"|"+context.getString(R.string.batch_txt)+currentOustStock.getFromBatchNo());
                 CommonUtil.setEditFocus(edtOffShelfScanbarcode);
                 return false;
             }

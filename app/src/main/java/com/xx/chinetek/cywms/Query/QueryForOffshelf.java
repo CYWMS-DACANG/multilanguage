@@ -74,7 +74,7 @@ public class QueryForOffshelf extends BaseActivity {
         BaseApplication.context = context;
         x.view().inject(this);
         String Context=getIntent().getStringExtra("MaterialNO");
-        txtname.setText(BaseApplication.toolBarTitle.Title+"号：");
+        txtname.setText(BaseApplication.toolBarTitle.Title+context.getString(R.string.num));
         Type=getIntent().getIntExtra("Type",-1);
         ScanQty=Float.parseFloat(getIntent().getStringExtra("ScanQty"));
         if(!TextUtils.isEmpty(Context)){

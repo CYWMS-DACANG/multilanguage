@@ -166,7 +166,7 @@ public class ReceiptBillChoice extends BaseActivity implements SwipeRefreshLayou
                         String SupplierName = receiptModels.get(i).getSupplierName();
                         String SupplierID = receiptModels.get(i).getSupplierNo();
                         map = new HashMap<String, String>();
-                        map.put("SupplierName", SupplierName == null || SupplierName.isEmpty() ? "空" : SupplierName);
+                        map.put("SupplierName", SupplierName == null || SupplierName.isEmpty() ? getString(R.string.Empty) : SupplierName);
                         map.put("SupplierID", SupplierID == null || SupplierID.isEmpty() ? "000000" : SupplierID);
                         SupplierList.add(map);
                     }

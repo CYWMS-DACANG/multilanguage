@@ -165,7 +165,7 @@ public class DismantlePallet extends BaseActivity {
             }.getType());
             if (returnMsgModel.getHeaderStatus().equals("S")) {
                 ClearFrm();
-                MessageBox.Show(context, "托盘条码打印成功！");
+                MessageBox.Show(context, R.string.pallet_barcode_print_success);
             } else {
                 MessageBox.Show(context, returnMsgModel.getMessage());
             }
@@ -302,7 +302,7 @@ public class DismantlePallet extends BaseActivity {
             }.getType());
             if(returnMsgModel.getHeaderStatus().equals("S")){
                 ClearFrm();
-                MessageBox.Show(context, "拆托成功！");
+                MessageBox.Show(context, context.getString(R.string.remove_pallet_success));
 //                //供应商打印去除打印
                 String PalletNoy=txtPalletNo.getText().toString();
                 if(!TextUtils.isEmpty(PalletNoy)){

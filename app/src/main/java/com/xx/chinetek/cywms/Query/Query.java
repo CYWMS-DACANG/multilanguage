@@ -75,7 +75,7 @@ int Type=-1;
         x.view().inject(this);
         String Context=getIntent().getStringExtra("MaterialNO");
 //        String StrQuery=getIntent().getStringExtra("StrQuery");
-        txtname.setText(BaseApplication.toolBarTitle.Title+"号：");
+        txtname.setText(BaseApplication.toolBarTitle.Title+getString(R.string.num));
         Type=getIntent().getIntExtra("Type",-1);
         if(!TextUtils.isEmpty(Context)){
             txtname.setVisibility(View.GONE);

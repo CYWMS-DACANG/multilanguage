@@ -286,7 +286,7 @@ public class TruckLoad extends BaseActivity {
             if(!TextUtils.isEmpty(addresses.get(0).getAddress())){
                 txtDestina.setText(addresses.get(0).getAddress());
             }else{
-                txtDestina.setText("无");
+                txtDestina.setText(R.string.Nothing);
             }
         }
     }
@@ -301,14 +301,14 @@ public class TruckLoad extends BaseActivity {
                 //根据ID获取RadioButton的实例
                 EditText tv = (EditText)findViewById(mTextView.getId());
                 if(TextUtils.isEmpty(tv.getText().toString().trim())){
-                    MessageBox.Show(context,"请输入完整数据");
+                    MessageBox.Show(context,R.string.please_enter_complete_data);
                     returnFlag=false;
                     CommonUtil.setEditFocus(tv);
                     break;
                 }
                 if(!CommonUtil.isFloat(tv.getText().toString().trim())){
                     returnFlag=false;
-                    MessageBox.Show(context,"数据格式不正确");
+                    MessageBox.Show(context,R.string.incorrect_data_format);
                     CommonUtil.setEditFocus(tv);
                 }
             }

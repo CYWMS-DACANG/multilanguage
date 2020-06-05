@@ -7,6 +7,7 @@ import android.content.DialogInterface.OnDismissListener;
 import android.content.DialogInterface.OnShowListener;
 import android.widget.EditText;
 
+import com.xx.chinetek.cywms.R;
 import com.xx.chinetek.util.function.CommonUtil;
 
 

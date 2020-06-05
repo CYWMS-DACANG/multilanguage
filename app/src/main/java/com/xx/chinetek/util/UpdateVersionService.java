@@ -60,7 +60,7 @@ public class UpdateVersionService {
                     //  progressBar.setProgress(progress);
                     break;
                 case DOWN_FINISH:
-                    Toast.makeText(context, "文件下载完成,正在安装更新", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.file_download_complete_install, Toast.LENGTH_SHORT).show();
                     installAPK();
                     break;
                 default:
@@ -94,7 +94,7 @@ public class UpdateVersionService {
             showDownloadDialog();
             return  true;
         } else {
-            Toast.makeText(context, "已经是新版本", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.already_newest_version, Toast.LENGTH_SHORT).show();
         }
         return  false;
     }
@@ -105,10 +105,10 @@ public class UpdateVersionService {
     private void showUpdateVersionDialog() {
         // 构造对话框
         Builder builder = new Builder(context);
-        builder.setTitle("软件更新");
-        builder.setMessage("检测到新版本,是否下载更新");
+        builder.setTitle(R.string.software_update);
+        builder.setMessage(R.string.confirm_update_new_version);
         // 更新
-        builder.setPositiveButton("更新", new OnClickListener() {
+        builder.setPositiveButton(R.string.update, new OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -117,7 +117,7 @@ public class UpdateVersionService {
             }
         });
         // 稍后更新
-        builder.setNegativeButton("稍后更新", new OnClickListener() {
+        builder.setNegativeButton(R.string.update_later, new OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -134,12 +134,12 @@ public class UpdateVersionService {
         {
             // 构造软件下载对话框
             Builder builder = new Builder(context);
-            builder.setTitle("存在新版本，正在更新");
+            builder.setTitle(R.string.new_version_updating);
             // 给下载对话框增加进度条
             final LayoutInflater inflater = LayoutInflater.from(context);
             View v = inflater.inflate(R.layout.downloaddialog, null);
             txtVersion=(TextView)v.findViewById(R.id.txtVersion);
-            txtVersion.setText("当前版本：" +getVersionCode(context));
+            txtVersion.setText(context.getString(R.string.current_version) +getVersionCode(context));
             builder.setView(v);
             // 取消更新
             builder.setNegativeButton(context.getString(R.string.cancel), new OnClickListener() {

@@ -90,13 +90,20 @@ public class InitPrint extends BaseActivity {
 
     @Override
     protected void initViews() {
+        LabelType[0] = context.getString(R.string.package_material);
+        LabelType[1] = context.getString(R.string.raw_material);
+        LabelType[2] = context.getString(R.string.package_material_return);
+        StrongHoldName[0] = getString(R.string.shcy);
+        StrongHoldName[1] = getString(R.string.shcx);
+        StrongHoldName[2] = getString(R.string.shpc);
+
         super.initViews();
         BaseApplication.context = context;
-        BaseApplication.toolBarTitle = new ToolBarTitle("期初打印", false);
+        BaseApplication.toolBarTitle = new ToolBarTitle(getString(R.string.init_print), false);
         x.view().inject(this);
         barcodeModel=new Barcode_Model();
         if(TextUtils.isEmpty(URLModel.PrintIP)){
-            MessageBox.Show(context,"移动打印机IP地址未设置");
+            MessageBox.Show(context,R.string.mobile_printer_ip_not_set);
         }
     }
 
@@ -104,7 +111,7 @@ public class InitPrint extends BaseActivity {
     private void edtClick(View view){
            final boolean isJD=view.getId()==R.id.edt_jd;
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setTitle(isJD?"选择据点":"选择标签类型");
+            builder.setTitle(isJD?context.getString(R.string.select_stronghold):getString(R.string.select_label_type));
         builder.setCancelable(false);
             builder.setItems(isJD?StrongHoldName:LabelType, new DialogInterface.OnClickListener()
             {
@@ -200,7 +207,7 @@ public class InitPrint extends BaseActivity {
                 //根据ID获取RadioButton的实例
                 EditText tv = (EditText)findViewById(mTextView.getId());
                 if(TextUtils.isEmpty(tv.getText().toString().trim())){
-                    MessageBox.Show(context,"请输入完整数据");
+                    MessageBox.Show(context,context.getString(R.string.please_enter_complete_data));
                     returnFlag=false;
                     CommonUtil.setEditFocus(tv);
                     break;
@@ -211,7 +218,7 @@ public class InitPrint extends BaseActivity {
                 //根据ID获取RadioButton的实例
                 TextView tv = (TextView)findViewById(mTextView.getId());
                 if(TextUtils.isEmpty(tv.getText().toString().trim())){
-                    MessageBox.Show(context,"请输入完整数据");
+                    MessageBox.Show(context,context.getString(R.string.please_enter_complete_data));
                     returnFlag=false;
                     break;
                 }
@@ -221,7 +228,7 @@ public class InitPrint extends BaseActivity {
 
         if(!CommonUtil.isFloat(edtsl.getText().toString().trim())){
             returnFlag=false;
-            MessageBox.Show(context,"数量格式不正确");
+            MessageBox.Show(context,R.string.quantity_format_error);
             CommonUtil.setEditFocus(edtsl);
         }
 

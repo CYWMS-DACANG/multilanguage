@@ -191,8 +191,8 @@ if(intent!=null)
             supplierModel.setVoucherNo("工单号"+i);
             supplierModel.setERPVoucherNo("批次号"+i);
             supplierModel.setStrVoucherType("单据类型"+i);
-            supplierModel.setCompany("据点");
-            supplierModel.setDepartment("部门");
+            supplierModel.setCompany(context.getString(R.string.stronghold));
+            supplierModel.setDepartment(context.getString(R.string.dept_item));
             supplierModels.add(supplierModel);
         }
         return supplierModels;

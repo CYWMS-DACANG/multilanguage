@@ -146,7 +146,7 @@ public class CombinPallet extends BaseActivity {
         if(id>=0) {
             BarCodeInfo delBarcode=(BarCodeInfo)palletItemAdapter.getItem(position);
             final String barcode=delBarcode.getSerialNo();
-            new AlertDialog.Builder(context).setTitle(context.getString(R.string.hint)).setCancelable(false).setIcon(android.R.drawable.ic_dialog_info).setMessage("是否删除物料数据？\n条码："+barcode)
+            new AlertDialog.Builder(context).setTitle(context.getString(R.string.hint)).setCancelable(false).setIcon(android.R.drawable.ic_dialog_info).setMessage(getString(R.string.confirm_delete_material_data_barcode)+barcode)
                     .setPositiveButton(context.getString(R.string.config), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -178,7 +178,7 @@ public class CombinPallet extends BaseActivity {
         {
             keyBoardCancle();
             if(SWPallet.isChecked()){
-                new AlertDialog.Builder(context).setCancelable(false).setTitle(context.getString(R.string.hint)).setIcon(android.R.drawable.ic_dialog_info).setMessage("是否放弃此次组托任务？")
+                new AlertDialog.Builder(context).setCancelable(false).setTitle(context.getString(R.string.hint)).setIcon(android.R.drawable.ic_dialog_info).setMessage(context.getString(R.string.confirm_cancel_pallet))
                         .setPositiveButton(context.getString(R.string.config), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

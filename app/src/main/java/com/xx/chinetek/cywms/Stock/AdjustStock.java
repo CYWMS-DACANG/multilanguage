@@ -116,6 +116,14 @@ public class AdjustStock extends BaseActivity {
 
     @Override
     protected void initViews() {
+
+        QCStatus[0] = context.getString(R.string.test_sample);
+        QCStatus[1] = context.getString(R.string.qc_passed);
+        QCStatus[2] = context.getString(R.string.unqualified_inspection);
+        StrongHoldName[0] = getString(R.string.shcy);
+        StrongHoldName[1] = getString(R.string.shcx);
+        StrongHoldName[2] = getString(R.string.shpc);
+
         super.initViews();
         BaseApplication.context = context;
         BaseApplication.toolBarTitle = new ToolBarTitle(getString(R.string.adjust_title), false);
@@ -143,7 +151,7 @@ public class AdjustStock extends BaseActivity {
     private void txtStrongHoldClick(View view){
         if(barcodeModel!=null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setTitle("选择据点");
+            builder.setTitle(R.string.select_stronghold);
             builder.setCancelable(false);
             builder.setItems(StrongHoldName, new DialogInterface.OnClickListener() {
                 @Override
@@ -180,7 +188,7 @@ public class AdjustStock extends BaseActivity {
     private void txtQCStatusClick(View view){
         if(barcodeModel!=null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setTitle("选择质检状态");
+            builder.setTitle(context.getString(R.string.Select_Qc_Status));
             builder.setCancelable(false);
             builder.setItems(QCStatus, new DialogInterface.OnClickListener() {
                 @Override
@@ -277,7 +285,7 @@ public class AdjustStock extends BaseActivity {
             String para = (new JSONObject(params)).toString();
             LogUtil.WriteLog(AdjustStock.class, TAG_SaveInfo, para);
             if(isBtnDelete){
-                new AlertDialog.Builder(context).setCancelable(false).setTitle(context.getString(R.string.hint)).setIcon(android.R.drawable.ic_dialog_info).setMessage("是否删除物料？\n" + barcodeModel.getSerialNo() )
+                new AlertDialog.Builder(context).setCancelable(false).setTitle(context.getString(R.string.hint)).setIcon(android.R.drawable.ic_dialog_info).setMessage(getString(R.string.confirm_delete_material)+"\n" + barcodeModel.getSerialNo() )
                         .setPositiveButton(context.getString(R.string.config), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -308,7 +316,7 @@ public class AdjustStock extends BaseActivity {
                     wareHouseInfo[i] = wareHouseInfos.get(i).getWareHouseNo() + wareHouseInfos.get(i).getWareHouseName();
                 }
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("选择盘点所属仓库");
+                builder.setTitle(context.getString(R.string.select_check_warehouse));
                 builder.setCancelable(false);
                 builder.setItems(wareHouseInfo, new DialogInterface.OnClickListener() {
                     @Override
