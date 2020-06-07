@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.product.Manage.UserInfoItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -194,6 +195,7 @@ public class ProductManageAdd extends BaseActivity {
         try {
             final Map<String, String> params = new HashMap<String, String>();
             params.put("user", userCode);
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_IsLINEMANAGEID, getString(R.string.Msg_GetWareHouse), context, mHandler, RESULT_IsLINEMANAGEID, null,  URLModel.GetURL().IsLINEMANAGEID, params, null);
         } catch (Exception ex) {
             MessageBox.Show(context, ex.getMessage());
@@ -204,6 +206,7 @@ public class ProductManageAdd extends BaseActivity {
         try {
             final Map<String, String> params = new HashMap<String, String>();
             params.put("UserNo", userCode);
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(ProductManageAdd.class, TAG_GetT_UserInfoModel, userCode);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_UserInfoModel, context.getString(R.string.Msg_GetUser), context, mHandler, RESULT_GetT_UserInfoModel, null,  URLModel.GetURL().GetWareHouseByUserADF, params, null);
         } catch (Exception ex) {
@@ -219,6 +222,7 @@ public class ProductManageAdd extends BaseActivity {
             String smodel=GsonUtil.parseModelToJson(model);
             params.put("UserJson", userJson);
             params.put("model", smodel);
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(ProductManageAdd.class, TAG_nsert_LineManageInfoModel, userJson);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_nsert_LineManageInfoModel, getString(R.string.Msg_Insert_User), context, mHandler, RESULT_Insert_LineManageInfoModel, null,  URLModel.GetURL().Insert_LineManageInfoModel, params, null);
         } catch (Exception ex) {

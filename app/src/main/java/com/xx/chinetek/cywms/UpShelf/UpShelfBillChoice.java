@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.wms.Upshelf.UpshelfBillChioceItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -137,6 +138,7 @@ public class UpShelfBillChoice extends BaseActivity implements SwipeRefreshLayou
                     params.put("TaskNo","");
                     params.put("AreaNo", "");
                     params.put("WareHouseID", BaseApplication.userInfo.getWarehouseID()+"");
+                    params.put("languageType", LanguageUtil.getLanguageType(context));
                     LogUtil.WriteLog(UpShelfBillChoice.class, TAG_GetT_ScanInStockModelADF, code);
                     RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_ScanInStockModelADF, getString(R.string.Msg_GetT_InStockListADF), context, mHandler, RESULT_GetT_ScanInStockModelADF, null, URLModel.GetURL().GetT_ScanInStockModelADF, params, null);
                     return false;
@@ -165,6 +167,7 @@ public class UpShelfBillChoice extends BaseActivity implements SwipeRefreshLayou
             Map<String, String> params = new HashMap<>();
             params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
             params.put("ModelJson", ModelJson);
+            params.put("languageType",LanguageUtil.getLanguageType(context));
            // params.put("WareHouseID",BaseApplication.userInfo.getWarehouseID()+"");
             LogUtil.WriteLog(UpShelfBillChoice.class, TAG_GetT_InTaskListADF, ModelJson);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_InTaskListADF, getString(R.string.Msg_GetT_InStockListADF), context, mHandler, RESULT_GetT_InTaskListADF, null,  URLModel.GetURL().GetT_InTaskListADF, params, null);

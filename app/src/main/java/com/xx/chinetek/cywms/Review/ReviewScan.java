@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.Pallet.CombinPalletDetail;
 import com.xx.chinetek.adapter.wms.Review.ReviewScanDetailAdapter;
 import com.xx.chinetek.base.BaseActivity;
@@ -178,6 +179,7 @@ public class ReviewScan extends BaseActivity {
                 final Map<String, String> params = new HashMap<String, String>();
                 params.put("UserJson", userJson);
                 params.put("ModelJson", modelJson);
+                params.put("languageType",LanguageUtil.getLanguageType(context));
                 LogUtil.WriteLog(ReviewScan.class, TAG_SaveT_OutStockReviewDetailADF, modelJson);
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveT_OutStockReviewDetailADF, getString(R.string.Msg_SaveT_OutStockReviewDetailADF), context, mHandler, RESULT_SaveT_OutStockReviewDetailADF, null, URLModel.GetURL().SaveT_OutStockReviewDetailADF, params, null);
             }
@@ -190,6 +192,7 @@ public class ReviewScan extends BaseActivity {
         OutStockDetailInfo_Model outStockDetailInfoModel=(OutStockDetailInfo_Model)reviewScanDetailAdapter.getItem(position);
         final Map<String, String> params = new HashMap<String, String>();
         params.put("ID", outStockDetailInfoModel.getID()+"");
+        params.put("languageType",LanguageUtil.getLanguageType(context));
         LogUtil.WriteLog(ReviewScan.class, TAG_GetStockByOutStockReviewByID,  outStockDetailInfoModel.getID()+"");
         RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetStockByOutStockReviewByID, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_GetStockByOutStockReviewByID, null, URLModel.GetURL().GetStockByOutStockReviewByID, params, null);
     }
@@ -206,6 +209,7 @@ public class ReviewScan extends BaseActivity {
             }else{
                 final Map<String, String> params = new HashMap<String, String>();
                 params.put("BarCode", code);
+                params.put("languageType", LanguageUtil.getLanguageType(context));
                 LogUtil.WriteLog(ReviewScan.class, TAG_ScanOutStockReviewByBarCodeADF, code);
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_ScanOutStockReviewByBarCodeADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_ScanOutStockReviewByBarCodeADF, null, URLModel.GetURL().ScanOutStockReviewByBarCodeADF, params, null);
             }
@@ -234,6 +238,7 @@ public class ReviewScan extends BaseActivity {
             BaseApplication.userInfo.setPDAPrintIP(URLModel.PrintIP);
             params.put("UserJson", parseModelToJson(BaseApplication.userInfo));
             params.put("ModelJson", ModelJson);
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(ReviewScan.class, TAG_SaveT_OutStockReviewPalletDetailADF, ModelJson);
            RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveT_OutStockReviewPalletDetailADF, getString(R.string.Msg_SaveT_PalletDetailADF), context, mHandler, RESULT_Msg_SaveT_OutStockReviewPalletDetailADF, null,  URLModel.GetURL().SaveT_OutStockReviewPalletDetailADF, params, null);
         }
@@ -260,6 +265,7 @@ public class ReviewScan extends BaseActivity {
             String Serialno = data.getStringExtra("Serialno");
             final Map<String, String> params = new HashMap<String, String>();
             params.put("BarCode", Serialno);
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(ReviewScan.class, TAG_ScanOutStockReviewByBarCodeADF, Serialno);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_ScanOutStockReviewByBarCodeADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_ScanOutStockReviewByBarCodeADF, null, URLModel.GetURL().ScanOutStockReviewByBarCodeListADF, params, null);
         }
@@ -292,6 +298,7 @@ public class ReviewScan extends BaseActivity {
             outStockDetailInfoModel1.setVoucherType(outStockModel.getVoucherType());
             final Map<String, String> params = new HashMap<String, String>();
             params.put("ModelDetailJson", parseModelToJson(outStockDetailInfoModel1));
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             String para = (new JSONObject(params)).toString();
             LogUtil.WriteLog(ReviewScan.class, TAG_GetT_OutStockReviewDetailListByHeaderIDADF, para);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_OutStockReviewDetailListByHeaderIDADF, getString(R.string.Msg_GetT_OutStockDetailListByHeaderIDADF), context, mHandler, RESULT_GetT_OutStockReviewDetailListByHeaderIDADF, null,  URLModel.GetURL().GetT_OutStockReviewDetailListByHeaderIDADF, params, null);

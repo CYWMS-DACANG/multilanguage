@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
 import com.xx.chinetek.base.ToolBarTitle;
@@ -125,6 +126,7 @@ public class TruckLoad extends BaseActivity {
         try {
             SelectTransportSupplierID=-1;
             Map<String, String> params = new HashMap<>();
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(IntentoryAdd.class, TAG_GetTransportSupplierListADF, "");
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetTransportSupplierListADF, getString(R.string.Msg_GetTransupplier), context, mHandler, RESULT_GetTransportSupplierListADF, null,  URLModel.GetURL().GetTransportSupplierListADF, params, null);
         } catch (Exception ex) {
@@ -169,6 +171,7 @@ public class TruckLoad extends BaseActivity {
                 String ModelJson = GsonUtil.parseModelToJson(transportSupplierModel);
                 final Map<String, String> params = new HashMap<String, String>();
                 params.put("ModelJson", ModelJson);
+                params.put("languageType", LanguageUtil.getLanguageType(context));
                 LogUtil.WriteLog(TruckLoad.class, TAG_SaveTransportSupplierListADF, ModelJson);
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveTransportSupplierListADF, getString(R.string.Msg_GetT_GetT_QualityListADF), context, mHandler, RESULT_SaveTransportSupplierListADF, null,  URLModel.GetURL().SaveTransportSupplierListADF, params, null);
             } catch (Exception ex) {
@@ -183,6 +186,7 @@ public class TruckLoad extends BaseActivity {
             try {
                 Map<String, String> params = new HashMap<>();
                 params.put("Erpvoucherno",voucherNo);
+                params.put("languageType", LanguageUtil.getLanguageType(context));
                 LogUtil.WriteLog(TruckLoad.class, TAG_GetDeliveryInfoAndroid, voucherNo);
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetDeliveryInfoAndroid, getString(R.string.Msg_GetDeliveryInfoAndroid), context, mHandler, RESULT_GetDeliveryInfoAndroid, null,  URLModel.GetURL().GetDeliveryInfoAndroid, params, null);
             } catch (Exception ex) {

@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.wms.QC.QCInStockItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -115,6 +116,7 @@ public class QCInStock extends BaseActivity {
                 String UserJson = GsonUtil.parseModelToJson(BaseApplication.userInfo);
                 params.put("UserJson", UserJson);
                 params.put("ModelJson", ModelJson);
+                params.put("languageType", LanguageUtil.getLanguageType(context));
                 LogUtil.WriteLog(QCInStock.class, TAG_CreateQualityForStock, ModelJson);
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_CreateQualityForStock, getString(R.string.Msg_SaveT_QuanlitySampADF), context, mHandler, RESULT_CreateQualityForStock, null, URLModel.GetURL().CreateQualityForStock, params, null);
             }
@@ -130,6 +132,7 @@ public class QCInStock extends BaseActivity {
             String code=edtQCInstockBarcode.getText().toString().trim();
             final Map<String, String> params = new HashMap<String, String>();
             params.put("BarCode", code);
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(QCScan.class, TAG_ScanQualityStockADF, code);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_ScanQualityStockADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_ScanQualityStockADF, null, URLModel.GetURL().ScanQualityStockADF, params, null);
         }

@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.wms.Pallet.PalletItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -146,10 +147,12 @@ public class DismantlePallet extends BaseActivity {
             final Map<String, String> params = new HashMap<String, String>();
             params.put("Barcode", barcode);
             params.put("PalletModel","2");
+            params.put("languageType", LanguageUtil.getLanguageType(context));
 //            if(!SWDisPallet.isChecked()) {
 //                LogUtil.WriteLog(DismantlePallet.class, TAG_GetT_SerialNoByPalletADF, barcode);
 //                RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_SerialNoByPalletADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_GetT_SerialNoByPalletADF, null,  URLModel.GetURL().GetT_SerialNoByPalletADF, params, null);
 //            }else{
+
                 LogUtil.WriteLog(DismantlePallet.class, TAG_GetT_PalletDetailByNoADF, barcode);
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_PalletDetailByNoADF, getString(R.string.Msg_GetT_PalletADF), context, mHandler, RESULT_GetT_PalletADF, null,  URLModel.GetURL().GetT_PalletDetailByNoADF, params, null);
            // }
@@ -188,6 +191,7 @@ public class DismantlePallet extends BaseActivity {
         final Map<String, String> params = new HashMap<String, String>();
         params.put("UserJson", userJson);
         params.put("PalletDetailJson", modelJson);
+        params.put("languageType",LanguageUtil.getLanguageType(context));
         LogUtil.WriteLog(DismantlePallet.class, TAG_Delete_PalletORBarCodeADF, modelJson);
         RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_Delete_PalletORBarCodeADF, getString(R.string.Msg_Delete_PalletORBarCodeADF), context, mHandler, RESULT_Delete_PalletORBarCodeADF, null,  URLModel.GetURL().Delete_PalletORBarCodeADF, params, null);
     }
@@ -314,7 +318,7 @@ public class DismantlePallet extends BaseActivity {
                     palletDetailModelsLast.add(mo);
                     final Map<String, String> params = new HashMap<String, String>();
                     params.put("PalletJson", GsonUtil.parseModelToJson(palletDetailModelsLast));
-
+                    params.put("languageType",LanguageUtil.getLanguageType(context));
 //                LogUtil.WriteLog(CombinPallet.class, TAG_Print_Tlabel, modelJson);
                     RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_Print_Tlabel, getString(R.string.Msg_Print), context, mHandler,RESULT_Print_Tlabel, null,  URLModel.GetURL().PrintForChaiTuoProductAndroid, params, null);
 

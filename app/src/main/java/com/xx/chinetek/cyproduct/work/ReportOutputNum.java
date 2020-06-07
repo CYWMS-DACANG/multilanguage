@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.Pallet.CombinPallet;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -158,6 +159,7 @@ public class ReportOutputNum extends BaseActivity {
                     final Map<String, String> params = new HashMap<String, String>();
                     params.put("Barcode", barcode);
                     params.put("PalletModel", "1");
+                    params.put("languageType", LanguageUtil.getLanguageType(context));
                     RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_PalletDetailByNoADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_GetT_SerialNoByPalletADF, null,  URLModel.GetURL().GetT_PalletDetailByNoADF, params, null);
                     return false;
                 }catch (Exception ex){
@@ -308,6 +310,7 @@ public class ReportOutputNum extends BaseActivity {
                     String modelJson = GsonUtil.parseModelToJson(model);
                     final Map<String, String> params = new HashMap<String, String>();
                     params.put("PalletJson", modelJson);
+                    params.put("languageType",LanguageUtil.getLanguageType(context));
                     RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_PrintT, getString(R.string.Msg_Print), context, mHandler, RESULT_PrintT, null, URLModel.GetURL().SaveT_YMHCPPrintADF, params, null);
 
                 }
@@ -333,6 +336,7 @@ public class ReportOutputNum extends BaseActivity {
                     params.put("UserJson", userJson);
                     params.put("json", modelJson);
 //                params.put("printtype", "1");
+                    params.put("languageType",LanguageUtil.getLanguageType(context));
                     RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveT_ProductPalletDetailADF, getString(R.string.Msg_SaveT_PalletDetailADF), context, mHandler, RESULT_GetT_ProductPalletDetailByNoADF, null, URLModel.GetURL().SaveT_YMHCPPalletDetailADF, params, null);
                 }
                 return;
@@ -415,7 +419,7 @@ public class ReportOutputNum extends BaseActivity {
 
                         params.put("UserJson", GsonUtil.parseModelToJson(user));
                         params.put("WoInfoJson", GsonUtil.parseModelToJson(models));
-
+                        params.put("languageType",LanguageUtil.getLanguageType(context));
 //            LogUtil.WriteLog(OffShelfBillChoice.class, TAG_GetT_OutTaskListADF, ModelJson);
                         RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_Get_ReportOutPutNum, getString(R.string.Msg_Post), context, mHandler,
                                 RESULT_Get_ReportOutPutNum, null,  Path, params, null);
@@ -448,6 +452,7 @@ public class ReportOutputNum extends BaseActivity {
             final Map<String, String> params = new HashMap<String, String>();
             params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
             params.put("AreaNo", code);
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(ReportOutputNum.class, TAG_GetAreaModelADF, code);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetAreaModelADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_Msg_GetAreaModelADF, null,  URLModel.GetURL().GetAreaModelADF, params, null);
         }
@@ -695,6 +700,7 @@ private String TaskNo="";
             Map<String, String> params = new HashMap<>();
             params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
             params.put("GongDan", txtNo.getText().toString());
+            params.put("languageType",LanguageUtil.getLanguageType(context));
 //            LogUtil.WriteLog(OffShelfBillChoice.class, TAG_GetT_OutTaskListADF, ModelJson);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_Get_GetBaoGong, getString(R.string.Msg_Post), context, mHandler,
                     RESULT_Get_GetBaoGong, null,   URLModel.GetURL().GetBaoGongSumQtyLastQty, params, null);

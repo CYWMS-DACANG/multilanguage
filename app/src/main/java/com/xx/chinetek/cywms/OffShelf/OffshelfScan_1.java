@@ -19,6 +19,7 @@ import android.widget.ToggleButton;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.wms.OffShelf.OffShelfScanDetailAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -219,6 +220,7 @@ public class OffshelfScan_1 extends BaseActivity {
                     params.put("strOldBarCode", strOldBarCode);
                     params.put("strNewBarCode", "");
                     params.put("PrintFlag", "1"); //1：打印 2：不打印
+                    params.put("languageType", LanguageUtil.getLanguageType(context));
                     LogUtil.WriteLog(OffshelfScan_1.class, TAG_SaveT_BarCodeToStockADF, strOldBarCode);
                     RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveT_BarCodeToStockADF, getString(R.string.Msg_SaveT_BarCodeToStockADF), context, mHandler, RESULT_SaveT_BarCodeToStockADF, null, URLModel.GetURL().SaveT_BarCodeToStockADF, params, null);
                 }
@@ -245,6 +247,7 @@ public class OffshelfScan_1 extends BaseActivity {
             params.put("ScanType", type+"");
             params.put("MoveType", "1"); //1：下架 2:移库
             params.put("IsEdate", IsEdate); //1：不判断有效期 2:判断有效期
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(OffshelfScan_1.class, TAG_GetStockModelADF, code);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetStockModelADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_Msg_GetStockModelADF, null, URLModel.GetURL().GetStockModelADF, params, null);
         }
@@ -291,6 +294,7 @@ public class OffshelfScan_1 extends BaseActivity {
             String UserJson=GsonUtil.parseModelToJson(BaseApplication.userInfo);
             params.put("UserJson",UserJson );
             params.put("ModelJson", ModelJson);
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(OffshelfScan_1.class, TAG_SaveT_OutStockTaskDetailADF, ModelJson);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveT_OutStockTaskDetailADF, getString(R.string.Msg_SaveT_OutStockTaskDetailADF), context, mHandler, RESULT_Msg_SaveT_OutStockTaskDetailADF, null,  URLModel.GetURL().SaveT_OutStockTaskDetailADF, params, null);
         }
@@ -307,6 +311,7 @@ public class OffshelfScan_1 extends BaseActivity {
             final Map<String, String> params = new HashMap<String, String>();
             String modelJson= parseModelToJson(outStockTaskInfoModels);
             params.put("ModelDetailJson",modelJson);
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(OffshelfScan_1.class, TAG_GetT_OutTaskDetailListByHeaderIDADF, modelJson);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_OutTaskDetailListByHeaderIDADF, getString(R.string.Msg_QualityDetailListByHeaderIDADF), context, mHandler, RESULT_Msg_GetT_OutTaskDetailListByHeaderIDADF, null,  URLModel.GetURL().GetT_OutTaskDetailListByHeaderIDADF, params, null);
         }

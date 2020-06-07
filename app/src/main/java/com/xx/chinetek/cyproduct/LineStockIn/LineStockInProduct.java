@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.product.LineStockIn.LineStockInMaterialItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -130,6 +131,7 @@ public class LineStockInProduct extends BaseActivity {
             }
             final Map<String, String> params = new HashMap<String, String>();
             params.put("BarCode", code);
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(ReceiptionScan.class, TAG_GetPalletDetailByBarCode_Product, code);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetPalletDetailByBarCode_Product, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_Msg_GetPalletDetailByBarCode_Product, null,  URLModel.GetURL().GetPalletDetailByBarCode_Product, params, null);
         }
@@ -175,6 +177,7 @@ public class LineStockInProduct extends BaseActivity {
                     String UserJson = GsonUtil.parseModelToJson(BaseApplication.userInfo);
                     params.put("UserJson", UserJson);
                     params.put("ModelJson", ModelJson);
+                    params.put("languageType", LanguageUtil.getLanguageType(context));
                     LogUtil.WriteLog(ReceiptionScan.class, TAG_SaveModeListForT_StockT, ModelJson);
                     RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveModeListForT_StockT, getString(R.string.Msg_SaveT_LineInStockProductlADF), context, mHandler, RESULT_SaveModeListForT_StockT, null, URLModel.GetURL().SaveModeListForT_StockT, params, null);
                 }

@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.wms.Upshelf.UpShelfScanDetailAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -186,6 +187,7 @@ public class UpShelfScanActivity extends BaseActivity {
             final Map<String, String> params = new HashMap<String, String>();
             params.put("AreaNo", StockCode);
             params.put("UserJson",  GsonUtil.parseModelToJson(BaseApplication.userInfo));
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(UpShelfScanActivity.class, TAG_GetAreaModelADF, StockCode);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetAreaModelADF, getString(R.string.Msg_GetAreaModelADF), context, mHandler, RESULT_Msg_GetAreaModelADF, null,  URLModel.GetURL().GetAreaModelADF, params, null);
         }
@@ -210,6 +212,7 @@ public class UpShelfScanActivity extends BaseActivity {
                 String ModelJson = GsonUtil.parseModelToJson(inStockTaskDetailsInfoModels);
                 params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
                 params.put("ModelJson", ModelJson);
+                params.put("languageType",LanguageUtil.getLanguageType(context));
                 LogUtil.WriteLog(UpShelfScanActivity.class, TAG_SaveT_InStockTaskDetailADF, ModelJson);
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveT_InStockTaskDetailADF, getString(R.string.Msg_SaveT_InStockTaskDetailADF), context, mHandler, RESULT_Msg_SaveT_InStockTaskDetailADF, null, URLModel.GetURL().SaveT_InStockTaskDetailADF, params, null);
             }
@@ -266,6 +269,7 @@ public class UpShelfScanActivity extends BaseActivity {
         params.put("TaskNo", inStockTaskInfoModel.getTaskNo());
         params.put("AreaNo", StockCode);
         params.put("WareHouseID", BaseApplication.userInfo.getWarehouseID()+"");
+        params.put("languageType",LanguageUtil.getLanguageType(context));
         LogUtil.WriteLog(UpShelfScanActivity.class, TAG_GetT_ScanInStockModelADF, code);
         RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_ScanInStockModelADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_Msg_GetT_ScanInStockModelADF, null,  URLModel.GetURL().GetT_ScanInStockModelADF, params, null);
     }
@@ -284,6 +288,7 @@ public class UpShelfScanActivity extends BaseActivity {
             final Map<String, String> params = new HashMap<String, String>();
             params.put("ModelDetailJson", parseModelToJson(inStockTaskDetailsInfoModel));
             String para = (new JSONObject(params)).toString();
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(UpShelfScanActivity.class, TAG_GetT_InTaskDetailListByHeaderIDADF, para);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_InTaskDetailListByHeaderIDADF, getString(R.string.Msg_GetT_InTaskDetailListByHeaderIDADF), context, mHandler, RESULT_Msg_GetT_InTaskDetailListByHeaderIDADF, null,  URLModel.GetURL().GetT_InTaskDetailListByHeaderIDADF, params, null);
         }

@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.wms.Receiption.ReceiptBillChioceItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -238,6 +239,7 @@ public class ReceiptBillChoice extends BaseActivity implements SwipeRefreshLayou
                     final Map<String, String> params = new HashMap<String, String>();
                     params.put("BarCode", code);
                     params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
+                    params.put("languageType", LanguageUtil.getLanguageType(context));
                     LogUtil.WriteLog(ReceiptBillChoice.class, TAG_GetT_PalletDetailByBarCode, code);
                     RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_PalletDetailByBarCode, getString(R.string.Msg_GetT_InStockListADF), context, mHandler, RESULT_GetT_PalletDetailByBarCode, null,  URLModel.GetURL().GetT_PalletDetailByBarCodeADF, params, null);
                     return false;
@@ -304,6 +306,7 @@ public class ReceiptBillChoice extends BaseActivity implements SwipeRefreshLayou
             Map<String, String> params = new HashMap<>();
             params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
             params.put("ModelJson", ModelJson);
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(ReceiptBillChoice.class, TAG_GetT_InStockList, ModelJson);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_InStockList, getString(R.string.Msg_GetT_InStockListADF), context, mHandler, RESULT_GetT_InStockList, null,  URLModel.GetURL().GetT_InStockListADF, params, null);
         } catch (Exception ex) {

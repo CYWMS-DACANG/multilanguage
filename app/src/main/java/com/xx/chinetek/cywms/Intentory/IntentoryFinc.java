@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.wms.Intentory.InventoryScanItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -140,6 +141,7 @@ public class IntentoryFinc extends BaseActivity {
                             // TODO 自动生成的方法
                             final Map<String, String> params = new HashMap<String, String>();
                             params.put("checkno",checkModel.getCHECKNO() );
+                            params.put("languageType", LanguageUtil.getLanguageType(context));
                             LogUtil.WriteLog(IntentoryFinc.class, TAG_SummitMin, checkModel.getCHECKNO());
                             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SummitMin, getString(R.string.Msg_SaveT_InventoryADF), context, mHandler, RESULT_SummitMin, null,  URLModel.GetURL().SummitMin, params, null);
                         }
@@ -168,6 +170,7 @@ public class IntentoryFinc extends BaseActivity {
                 final Map<String, String> params = new HashMap<String, String>();
                 params.put("barcode", barcode);
                 params.put("checkno", checkModel.getCHECKNO());
+                params.put("languageType",LanguageUtil.getLanguageType(context));
                 String para = (new JSONObject(params)).toString();
                 LogUtil.WriteLog(IntentoryFinc.class, TAG_GetMinBarocde, para);
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetMinBarocde, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_GetMinBarocde, null, URLModel.GetURL().GetMinBarocde, params, null);
@@ -181,6 +184,7 @@ public class IntentoryFinc extends BaseActivity {
             txtVourcherNo.setText(checkModel.getCHECKNO());
             final Map<String, String> params = new HashMap<String, String>();
             params.put("checkno", checkModel.getCHECKNO());
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             String para = (new JSONObject(params)).toString();
             LogUtil.WriteLog(IntentoryFinc.class, TAG_GetMinDetailbyCheckno, para);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetMinDetailbyCheckno, getString(R.string.Msg_Inventory_Load), context, mHandler, RESULT_GetMinDetailbyCheckno, null,  URLModel.GetURL().GetMinDetail, params, null);

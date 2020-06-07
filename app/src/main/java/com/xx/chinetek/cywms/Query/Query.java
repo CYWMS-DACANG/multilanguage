@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.wms.Query.QueryItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -100,6 +101,7 @@ int Type=-1;
             final Map<String, String> params = new HashMap<String, String>();
             params.put("MaterialNo", barcode);
             params.put("ScanType", Type+"");
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             String para = (new JSONObject(params)).toString();
             LogUtil.WriteLog(Query.class, TAG_GetStockByMaterialNoADF, para);
             RequestHandler.addRequestWithDialog(Request.Method.POST,TAG_GetStockByMaterialNoADF,String.format(getString(R.string.Msg_QueryStockInfo),BaseApplication.toolBarTitle.Title), context, mHandler, RESULT_Msg_GetStockADF, null,  URLModel.GetURL().GetStockByMaterialNoADF, params, null);

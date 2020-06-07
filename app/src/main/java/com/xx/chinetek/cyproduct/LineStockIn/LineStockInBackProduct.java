@@ -3,30 +3,24 @@ package com.xx.chinetek.cyproduct.LineStockIn;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
 import android.os.Message;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
-import com.xx.chinetek.Pallet.CombinPallet;
-import com.xx.chinetek.adapter.product.LineStockIn.LineStockInMaterialItemAdapter;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.product.LineStockIn.LineStockInMaterialItemymhtuiAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
 import com.xx.chinetek.base.ToolBarTitle;
-import com.xx.chinetek.cywms.InnerMove.InnerMoveDetail;
 import com.xx.chinetek.cywms.R;
-import com.xx.chinetek.cywms.Receiption.ReceiptionScan;
 import com.xx.chinetek.model.Base_Model;
 import com.xx.chinetek.model.Material.BarCodeInfo;
 import com.xx.chinetek.model.Production.LineStockIn.LineStockInProductModel;
@@ -37,13 +31,11 @@ import com.xx.chinetek.model.ReturnMsgModelList;
 import com.xx.chinetek.model.URLModel;
 import com.xx.chinetek.model.User.UerInfo;
 import com.xx.chinetek.model.User.WareHouseInfo;
-import com.xx.chinetek.model.WMS.Inventory.Barcode_Model;
 import com.xx.chinetek.model.WMS.Stock.AreaInfo_Model;
 import com.xx.chinetek.util.Network.NetworkError;
 import com.xx.chinetek.util.Network.RequestHandler;
 import com.xx.chinetek.util.dialog.MessageBox;
 import com.xx.chinetek.util.dialog.ToastUtil;
-import com.xx.chinetek.util.function.ArithUtil;
 import com.xx.chinetek.util.function.CommonUtil;
 import com.xx.chinetek.util.function.DoubleClickCheck;
 import com.xx.chinetek.util.function.GsonUtil;
@@ -205,6 +197,7 @@ public class LineStockInBackProduct extends BaseActivity {
                         String UserJson = GsonUtil.parseModelToJson(user);
                         params.put("UserJson", UserJson);
                         params.put("ModelJson", ModelJson);
+                        params.put("languageType", LanguageUtil.getLanguageType(context));
                         LogUtil.WriteLog(LineStockInBackProduct.class, TAG_SaveBarcodeListInStockForTuiLiao, ModelJson);
                         RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveBarcodeListInStockForTuiLiao, getString(R.string.Msg_SaveT_LineInStockProductlADF), context, mHandler, RESULT_SaveBarcodeListInStockForTuiLiao, null, URLModel.GetURL().SaveBarcodeListInStockForTuiLiao, params, null);
                     }
@@ -247,6 +240,7 @@ public class LineStockInBackProduct extends BaseActivity {
                                 String UserJson = GsonUtil.parseModelToJson(BaseApplication.userInfo);
                                 params.put("UserJson", UserJson);
                                 params.put("WoinfoID", String.valueOf(womodel.getID()));
+                                params.put("languageType", LanguageUtil.getLanguageType(context));
                                 if(womodel.getStrVoucherType().toString().equals(context.getString(R.string.bulk_material))){
                                     params.put("BatchNo", womodel.getWo_Batch().toString());
                                     RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetChengDataByErpVoucherNoBatchno, getString(R.string.Msg_SaveT_LineInStockProductlADF), context, mHandler, RESULT_GetChengDataByErpVoucherNoBatchno, null, URLModel.GetURL().GetChengDataByErpVoucherNoBatchno, params, null);
@@ -263,6 +257,7 @@ public class LineStockInBackProduct extends BaseActivity {
                 String UserJson = GsonUtil.parseModelToJson(BaseApplication.userInfo);
                 params.put("UserJson", UserJson);
                 params.put("WoinfoID", String.valueOf(womodel.getID()));
+                params.put("languageType", LanguageUtil.getLanguageType(context));
                 if(womodel.getStrVoucherType().toString().equals(context.getString(R.string.bulk_material))){
                     params.put("BatchNo", womodel.getWo_Batch().toString());
                     RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetChengDataByErpVoucherNoBatchno, getString(R.string.Msg_SaveT_LineInStockProductlADF), context, mHandler, RESULT_GetChengDataByErpVoucherNoBatchno, null, URLModel.GetURL().GetChengDataByErpVoucherNoBatchno, params, null);
@@ -384,6 +379,7 @@ public class LineStockInBackProduct extends BaseActivity {
             final Map<String, String> params = new HashMap<String, String>();
             params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
             params.put("AreaNo", code);
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(LineStockInBackProduct.class, TAG_GetAreaModelADF, code);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetAreaModelADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_Msg_GetAreaModelADF, null,  URLModel.GetURL().GetAreaModelADF, params, null);
 
@@ -432,6 +428,7 @@ public class LineStockInBackProduct extends BaseActivity {
         try{
             final Map<String, String> params = new HashMap<String, String>();
             params.put("HeadId", HID);
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(LineStockInReturn.class, TAG_Get_WODetailInfo, HID);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_Get_WODetailInfo, getString(R.string.Msg_GetT_Wodetailinfo), context, mHandler, RESULT_Get_WODetailInfo, null,  URLModel.GetURL().GetWODetailInfo, params, null);
         }catch (Exception ex){
@@ -449,6 +446,7 @@ public class LineStockInBackProduct extends BaseActivity {
                 String Fileter = edtLineStockInScanBarcode.getText().toString().trim();
                 final Map<String, String> params = new HashMap<String, String>();
                 params.put("SerialNo", Fileter);
+                params.put("languageType", LanguageUtil.getLanguageType(context));
                 LogUtil.WriteLog(LineStockInReturn.class, TAG_Get_barcode, Fileter);
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_Get_barcode, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_Get_barcode, null,  URLModel.GetURL().GetT_SerialNoADF, params, null);
 
@@ -496,6 +494,7 @@ public class LineStockInBackProduct extends BaseActivity {
                     params.put("UserJson", UserJson);
                     params.put("BatchNo", womodel.getWo_Batch().toString());
                     params.put("WoinfoID", String.valueOf(womodel.getID()));
+                    params.put("languageType",LanguageUtil.getLanguageType(context));
                     if(womodel.getStrVoucherType().toString().equals(context.getString(R.string.bulk_material))){
                         RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetChengDataByErpVoucherNoBatchno, getString(R.string.Msg_SaveT_LineInStockProductlADF), context, mHandler, RESULT_GetChengDataByErpVoucherNoBatchno, null, URLModel.GetURL().PostDaoKouForChengPinOrSemi, params, null);
                     }else{
@@ -518,6 +517,7 @@ public class LineStockInBackProduct extends BaseActivity {
                             String UserJson = GsonUtil.parseModelToJson(BaseApplication.userInfo);
                             params.put("UserJson", UserJson);
                             params.put("ModelJson", ModelJson);
+                            params.put("languageType", LanguageUtil.getLanguageType(context));
                             LogUtil.WriteLog(LineStockInBackProduct.class, TAG_SaveBarcodeListInStockForTuiLiao, ModelJson);
                             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveBarcodeListInStockForTuiLiao, getString(R.string.Msg_SaveT_LineInStockProductlADF), context, mHandler, RESULT_SaveBarcodeListInStockForTuiLiao, null, URLModel.GetURL().SaveBarcodeListInStockForTuiLiao, params, null);
                         }

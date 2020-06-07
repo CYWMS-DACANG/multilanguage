@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
 import com.xx.chinetek.base.ToolBarTitle;
@@ -143,6 +144,7 @@ public class Boxing extends BaseActivity {
                     edtUnboxCode.getText().toString().trim():edtBoxCode.getText().toString().trim();
             final Map<String, String> params = new HashMap<String, String>();
             params.put("BarCode", barcode);
+            params.put("languageType", LanguageUtil.getLanguageType(context));
                 LogUtil.WriteLog(Boxing.class, TAG_GetT_OutBarCodeInfoByBoxADF, barcode);
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_OutBarCodeInfoByBoxADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_GetT_OutBarCodeInfoByBoxADF, null,  URLModel.GetURL().GetT_GetT_OutBarCodeInfoByBoxADF, params, null);
             return false;
@@ -181,6 +183,7 @@ public class Boxing extends BaseActivity {
         params.put(!SWBox.isChecked()?"strNewBarCode":"strOldBarCode", strOldBarCode);
         params.put(!SWBox.isChecked()?"strOldBarCode":"strNewBarCode", strNewBarCode);
         params.put("PrintFlag","1"); //1：打印 2：不打印
+        params.put("languageType",LanguageUtil.getLanguageType(context));
         LogUtil.WriteLog(Boxing.class, TAG_SaveT_BarCodeToStockADF, strOldBarCode+"||"+strNewBarCode);
         RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveT_BarCodeToStockADF, getString(R.string.Msg_SaveT_BarCodeToStockADF), context, mHandler, RESULT_SaveT_BarCodeToStockADF, null,  URLModel.GetURL().SaveT_BarCodeToStockADF, params, null);
     }

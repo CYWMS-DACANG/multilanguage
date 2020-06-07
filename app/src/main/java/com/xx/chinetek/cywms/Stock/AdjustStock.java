@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
 import com.xx.chinetek.base.ToolBarTitle;
@@ -138,6 +139,7 @@ public class AdjustStock extends BaseActivity {
         if(barcodeModel!=null) {
             LogUtil.WriteLog(AdjustStock.class, TAG_GetWareHouse, "");
             final Map<String, String> params = new HashMap<>();
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             try {
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetWareHouse, getString(R.string.Msg_GetWareHouse), context, mHandler, RESULT_GetWareHouse, null, URLModel.GetURL().GetWareHouse, params, null);
             } catch (Exception ex) {
@@ -175,6 +177,7 @@ public class AdjustStock extends BaseActivity {
             if (!barcode.equals("")) {
                 final Map<String, String> params = new HashMap<String, String>();
                 params.put("barcode", barcode);
+                params.put("languageType", LanguageUtil.getLanguageType(context));
                 String para = (new JSONObject(params)).toString();
                 LogUtil.WriteLog(AdjustStock.class, TAG_GetInfoBySerial, para);
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetInfoBySerial, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_GetInfoBySerial, null, URLModel.GetURL().GetInfoBySerial, params, null);
@@ -282,6 +285,7 @@ public class AdjustStock extends BaseActivity {
             String ModelJson= GsonUtil.parseModelToJson(barcodeModels);
             params.put("json", ModelJson);
             params.put("man", BaseApplication.userInfo.getUserNo());
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             String para = (new JSONObject(params)).toString();
             LogUtil.WriteLog(AdjustStock.class, TAG_SaveInfo, para);
             if(isBtnDelete){

@@ -9,6 +9,7 @@ import android.widget.ExpandableListView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.wms.Pallet.PalletDetailItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -142,6 +143,7 @@ public class CombinPalletDetail extends BaseActivity {
     private void Get_PalletDetailByVoucherNo(String VoucherNo) {
         final Map<String, String> params = new HashMap<String, String>();
         params.put("VoucherNo", VoucherNo);
+        params.put("languageType", LanguageUtil.getLanguageType(context));
         LogUtil.WriteLog(CombinPalletDetail.class, TAG_Get_PalletDetailByVoucherNo, VoucherNo);
         RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_Get_PalletDetailByVoucherNo, getString(R.string.Msg_Get_PalletDetailByVoucherNo), context, mHandler, RESULT_Msg_Get_PalletDetailByVoucherNo, null,  URLModel.GetURL().Get_PalletDetailByVoucherNo, params, null);
 
@@ -172,6 +174,7 @@ public class CombinPalletDetail extends BaseActivity {
         String palletDetailJson=GsonUtil.parseModelToJson(palletDetailModel);
         params.put("UserJson", userJson);
         params.put("PalletDetailJson", palletDetailJson);
+        params.put("languageType",LanguageUtil.getLanguageType(context));
         LogUtil.WriteLog(CombinPalletDetail.class, TAG_Del_PalletOrSerialNo, palletDetailJson);
         RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_Del_PalletOrSerialNo, getString(R.string.Msg_Del_PalletOrbarcode), context, mHandler,
                 RESULT_Msg_Del_PalletOrSerialNo, null,  URLModel.GetURL().Delete_PalletORBarCodeADF, params, null);

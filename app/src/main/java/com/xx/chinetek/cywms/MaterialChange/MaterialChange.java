@@ -14,6 +14,7 @@ import android.widget.ToggleButton;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.wms.MaterialChange.MaterialChangeScanDetailAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -162,6 +163,7 @@ public class MaterialChange extends BaseActivity {
                 params.put("UserJson", UserJson);
                 params.put("OutStockDetailListJson", OutStockDetailListJson);
                 params.put("InStockDetailListJson", InStockDetailListJson);
+                params.put("languageType", LanguageUtil.getLanguageType(context));
                 LogUtil.WriteLog(MaterialChange.class, TAG_SaveT_ChangeMaterialADF,"OutStockDetailListJson\r\n"+ OutStockDetailListJson+"\r\n\r\nInStockDetailListJson\r\n"+InStockDetailListJson);
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveT_ChangeMaterialADF, getString(R.string.Msg_SaveT_ChangeMaterialADF), context, mHandler, RESULT_SaveT_ChangeMaterialADF, null, URLModel.GetURL().SaveT_ChangeMaterialADF, params, null);
             }
@@ -189,6 +191,7 @@ public class MaterialChange extends BaseActivity {
             params.put("ScanType", type+"");
             params.put("MoveType", "1"); //1：下架 2:移库
             params.put("IsEdate","");
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(MaterialChange.class, TAG_GetStockModelADF, code);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetStockModelADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_Msg_GetStockModelADF, null, URLModel.GetURL().GetStockModelADF, params, null);
         }
@@ -234,6 +237,7 @@ public class MaterialChange extends BaseActivity {
                 params.put("strOldBarCode", strOldBarCode);
                 params.put("strNewBarCode", "");
                 params.put("PrintFlag","1"); //1：打印 2：不打印
+                params.put("languageType",LanguageUtil.getLanguageType(context));
                 LogUtil.WriteLog(MaterialChange.class, TAG_SaveT_BarCodeToStockADF, strOldBarCode);
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveT_BarCodeToStockADF, getString(R.string.Msg_SaveT_BarCodeToStockADF), context, mHandler, RESULT_SaveT_BarCodeToStockADF, null, URLModel.GetURL().SaveT_BarCodeToStockADF, params, null);
             }

@@ -22,12 +22,10 @@ public class LanguageUtil {
     /**
      * 韩文
      */
-    public static final Locale LOCALE_KOREAN = new Locale("ko");
+    public static final Locale LOCALE_KOREAN  = new Locale("ko");
 
-    private static final String LOCALE_SP = "LOCALE_SP";
+    private static final String LOCALE_SP     = "LOCALE_SP";
     private static final String LOCALE_SP_KEY = "LOCALE_SP_KEY";
-
-
 
 
     public static Locale getLocale(Context context) {
@@ -37,6 +35,19 @@ public class LanguageUtil {
         return gson.fromJson(localeJson, Locale.class);
     }
 
+
+    public static String getLanguageType(Context context) {
+        String languageType = "1";
+        if (getCurrentLocale(context).equals(LOCALE_CHINESE)) {
+            languageType = "1";
+
+        } else if (getCurrentLocale(context).equals(LOCALE_ENGLISH)) {
+            languageType = "2";
+        } else if (getCurrentLocale(context).equals(LOCALE_KOREAN)) {
+            languageType = "3";
+        }
+        return languageType;
+    }
 
     private static void setLocale(Context pContext, Locale pUserLocale) {
         SharedPreferences spLocal = pContext.getSharedPreferences(LOCALE_SP, Context.MODE_PRIVATE);
@@ -66,6 +77,7 @@ public class LanguageUtil {
     public static boolean needUpdateLocale(Context pContext, Locale newUserLocale) {
         return newUserLocale != null && !getCurrentLocale(pContext).equals(newUserLocale);
     }
+
     public static Locale getCurrentLocale(Context context) {
         Locale locale;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) { //7.0有多语言设置获取顶部的语言

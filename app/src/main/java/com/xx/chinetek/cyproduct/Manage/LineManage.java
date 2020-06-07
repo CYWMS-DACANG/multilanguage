@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.product.Manage.LineManageItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -130,6 +131,7 @@ public class LineManage extends BaseActivity implements SwipeRefreshLayout.OnRef
 //            String ModelJson = GsonUtil.parseModelToJson(lineManageModels);
             Map<String, String> params = new HashMap<>();
             params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
+            params.put("languageType", LanguageUtil.getLanguageType(context));
 //            params.put("ModelJson", ModelJson);
 //            LogUtil.WriteLog(LineManage.class, TAG_GetT_LineManageInfoModel, ModelJson);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_LineManageInfoModel, getString(R.string.Mag_GetT_LineManageInfoModel), context, mHandler, RESULT_GetT_LineManageInfoModel, null,  URLModel.GetURL().GetT_LineManageInfoModel, params, null);

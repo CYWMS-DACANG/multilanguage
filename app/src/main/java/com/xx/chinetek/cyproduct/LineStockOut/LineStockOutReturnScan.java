@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.product.LineStockOut.LineStockOutReturnScanDetailAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -122,6 +123,7 @@ public class LineStockOutReturnScan extends BaseActivity {
             String code=edtLineStockOutScanBarcode.getText().toString().trim();
             final Map<String, String> params = new HashMap<String, String>();
             params.put("BarCode", code);
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(LineStockOutReturnScan.class, TAG_GetT_PalletDetailByBarCodeADF, code);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_PalletDetailByBarCodeADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_Msg_GetT_PalletDetailByBarCode, null,  URLModel.GetURL().GetPalletDetailByBarCodeForStockOut, params, null);
         }
@@ -141,6 +143,7 @@ public class LineStockOutReturnScan extends BaseActivity {
             final Map<String, String> params = new HashMap<String, String>();
             params.put("ModelDetailJson", parseModelToJson(receiptDetailModel));
             String para = (new JSONObject(params)).toString();
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(LineStockOutReturnScan.class, TAG_GetT_InStockDetailListByHeaderIDADF, para);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_InStockDetailListByHeaderIDADF, getString(R.string.Msg_GetT_LineInStockDetail), context, mHandler, RESULT_Msg_GetT_InStockDetailListByHeaderIDADF, null,  URLModel.GetURL().GetT_InStockDetailListByHeaderIDADF, params, null);
         }

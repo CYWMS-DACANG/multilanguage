@@ -1,8 +1,6 @@
 package com.xx.chinetek.cyproduct.work;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.os.Message;
 import android.view.KeyEvent;
 import android.view.View;
@@ -14,13 +12,10 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
-import com.xx.chinetek.adapter.product.BillsStockIn.BillAdapter;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.product.BillsStockIn.WoBatchAlldapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
-import com.xx.chinetek.cyproduct.Billinstock.BillsIn;
-import com.xx.chinetek.cyproduct.Billinstock.CompleteProduct;
-import com.xx.chinetek.cyproduct.Billinstock.CompleteProductW;
 import com.xx.chinetek.cywms.R;
 import com.xx.chinetek.model.Base_Model;
 import com.xx.chinetek.model.Production.Wo.WoModel;
@@ -28,7 +23,6 @@ import com.xx.chinetek.model.ReturnMsgModel;
 import com.xx.chinetek.model.ReturnMsgModelList;
 import com.xx.chinetek.model.URLModel;
 import com.xx.chinetek.model.User.UerInfo;
-import com.xx.chinetek.model.User.UserInfo;
 import com.xx.chinetek.util.Network.NetworkError;
 import com.xx.chinetek.util.Network.RequestHandler;
 import com.xx.chinetek.util.dialog.MessageBox;
@@ -105,6 +99,7 @@ public class ReportBaojian extends BaseActivity {
                 String barcode = edtBarcode.getText().toString().trim();
                 final Map<String, String> params = new HashMap<String, String>();
                 params.put("BarCode", barcode);
+                params.put("languageType", LanguageUtil.getLanguageType(context));
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_BatchNoBySerialnoForOnlyADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_GetT_BatchNoBySerialnoForOnlyADF, null,  URLModel.GetURL().GetBatchNoBySerialnoForOnly, params, null);
                 return false;
             }catch (Exception ex){
@@ -139,6 +134,7 @@ public class ReportBaojian extends BaseActivity {
                 user.setErpVoucherNo(womodel.getErpVoucherNo().toString());
                 params.put("UserJson", GsonUtil.parseModelToJson(user));
                 params.put("WoInfoJson", GsonUtil.parseModelToJson(womodel));
+                params.put("languageType",LanguageUtil.getLanguageType(context));
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_PostBaoJianByListWoinfoADF, getString(R.string.Msg_Post), context, mHandler, RESULT_Msg_PostBaoJianByListWoinfoADF, null, URLModel.GetURL().PostBaoJianByListWoinfo, params, null);
             }
         }catch (Exception ex){
@@ -244,6 +240,7 @@ public class ReportBaojian extends BaseActivity {
         try {
             Map<String, String> params = new HashMap<>();
             params.put("ErpVoucherNo", womodel.getErpVoucherNo());
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_BaojianAll, getString(R.string.Msg_GetWOInfo), context, mHandler,
                     RESULT_GetT_BaojianAll, null,  URLModel.GetURL().GetWoBanGongListByErpVoucherNoForBaoJian, params, null);
         } catch (Exception ex) {

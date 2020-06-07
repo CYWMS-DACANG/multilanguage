@@ -4,8 +4,6 @@ import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
 import android.os.Message;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -19,6 +17,7 @@ import android.widget.TimePicker;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.product.Manage.WoDetailMaterialItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -39,7 +38,6 @@ import com.xx.chinetek.util.dialog.MessageBox;
 import com.xx.chinetek.util.dialog.ToastUtil;
 import com.xx.chinetek.util.function.ArithUtil;
 import com.xx.chinetek.util.function.CommonUtil;
-import com.xx.chinetek.util.function.DoubleClickCheck;
 import com.xx.chinetek.util.function.GsonUtil;
 import com.xx.chinetek.util.log.LogUtil;
 
@@ -220,12 +218,14 @@ public class ProductMaterialConfig extends BaseActivity {
                 try {
                     final Map<String, String> params = new HashMap<String, String>();
                     params.put("SerialNo",barcode);
+                    params.put("languageType", LanguageUtil.getLanguageType(context));
 //                    params.put("BarCode", barcode);
 //                    params.put("ScanType", "2");
 //                    params.put("MoveType", "1"); //1：下架 2:移库
 //                    params.put("IsEdate", "2"); //1：不判断有效期 2:判断有效期
 //                    LogUtil.WriteLog(ProductMaterialConfig.class, TAG_GetStockModelADF, barcode);
 //                    RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetStockModelADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_Msg_GetStockModelADF, null, URLModel.GetURL().GetStockModelADF, params, null);
+                    params.put("languageType",LanguageUtil.getLanguageType(context));
                     RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetStockModelADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_Msg_GetStockModelADF, null, URLModel.GetURL().GetT_SerialNoADF, params, null);
                 } catch (Exception ex) {
                     MessageBox.Show(context, ex.getMessage());
@@ -271,6 +271,7 @@ public class ProductMaterialConfig extends BaseActivity {
             Map<String, String> params = new HashMap<>();
            // params.put("UserJson", GsonUtil.parseModelToJson(userInfo));
             params.put("HeadId", woModel.getID()+"");
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(ProductMaterialConfig.class, TAG_GetWoDetailModelByWoNo, woModel.getID()+"");
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetWoDetailModelByWoNo, getString(R.string.Mag_GetWoDetailModelByWoNo), context, mHandler, RESULT_GetWoDetailModelByWoNo, null,  URLModel.GetURL().GetWoDetailModelByWoNo, params, null);
         } catch (Exception ex) {
@@ -451,6 +452,7 @@ public class ProductMaterialConfig extends BaseActivity {
             Map<String, String> params = new HashMap<>();
             params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
             params.put("ModelJson", GsonUtil.parseModelToJson(AllBarcode));
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveBarcodeListForQiTao, getString(R.string.process_submit_data), context, mHandler, RESULT_SaveBarcodeListForQiTao, null,  URLModel.GetURL().SaveBarcodeListForQiTao, params, null);
         } catch (Exception ex) {
             MessageBox.Show(context, ex.getMessage());

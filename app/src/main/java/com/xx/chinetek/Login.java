@@ -218,6 +218,7 @@ public class Login extends BaseActivity {
                 LogUtil.WriteLog(Login.class, TAG, userJson);
                 Map<String, String> params = new HashMap<>();
                 params.put("UserJson", userJson);
+                params.put("languageType",LanguageUtil.getLanguageType(context));
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG, getString(R.string.Msg_Login), context, mHandler, RESULT_GET_LOGIN_INFO, null, URLModel.GetURL().UserLoginADF, params, null);
             }
         }
@@ -326,6 +327,7 @@ public class Login extends BaseActivity {
             keyBoardCancle();
             final Map<String, String> params = new HashMap<String, String>();
             params.put("UserNo", userNo);
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(Login.class, TAG_GetWareHouseByUserADF, userNo);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetWareHouseByUserADF, getString(R.string.Msg_GetWareHouse), context, mHandler, RESULT_GetWareHouseByUserADF, null,  URLModel.GetURL().GetWareHouseByUserADF, params, null);
         }

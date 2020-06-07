@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.wms.QC.QcMaterialChioceItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -153,6 +154,7 @@ public class QCMaterialChoice extends BaseActivity {
             final Map<String, String> params = new HashMap<String, String>();
             params.put("UserJson", UserJson);
             params.put("ModelJson", ModelJson);
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(ReceiptionScan.class, TAG_UpadteT_QualityUserADF, ModelJson);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_UpadteT_QualityUserADF, getString(R.string.Msg_UpadteT_QualityUserADF), context, mHandler, RESULT_Msg_UpadteT_QualityUserADF, null, URLModel.GetURL().UpadteT_QualityUserADF, params, null);
         }else{
@@ -178,6 +180,7 @@ public class QCMaterialChoice extends BaseActivity {
         final Map<String, String> params = new HashMap<String, String>();
         params.put("UserJson",UserJson );
         params.put("ModelJson", ModelJson);
+        params.put("languageType",LanguageUtil.getLanguageType(context));
         LogUtil.WriteLog(ReceiptionScan.class, TAG_GetT_QualityListADF, ModelJson);
         RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_QualityListADF, getString(R.string.Msg_GetT_GetT_QualityListADF), context, mHandler, RESULT_Msg_GetT_QualityListADF, null,  URLModel.GetURL().GetT_QualityListADF, params, null);
     }

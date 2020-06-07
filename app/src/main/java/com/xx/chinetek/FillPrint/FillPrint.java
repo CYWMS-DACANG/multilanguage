@@ -11,6 +11,7 @@ import android.widget.ToggleButton;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.Pallet.CombinPallet;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -142,6 +143,7 @@ public class FillPrint extends BaseActivity {
                 params.put("ScanType", type + "");
                 params.put("MoveType", "2"); //1：下架 2:移库
                 params.put("IsEdate", "1"); //1：不判断有效期 2:判断有效期
+                params.put("languageType", LanguageUtil.getLanguageType(context));
                 LogUtil.WriteLog(FillPrint.class, TAG_GetStockModelADF, code);
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetStockModelADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_Msg_GetStockModelADF, null, URLModel.GetURL().GetStockModelADF, params, null);
 //            }else{
@@ -165,6 +167,7 @@ public class FillPrint extends BaseActivity {
                 String modelJson = GsonUtil.parseModelToJson(model);
                 final Map<String, String> params = new HashMap<String, String>();
                 params.put("PalletJson", modelJson);
+                params.put("languageType",LanguageUtil.getLanguageType(context));
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_PrintT, getString(R.string.Msg_Print), context, mHandler, RESULT_PrintT, null, URLModel.GetURL().SaveT_YMHCPPrintADF, params, null);
 
             }
@@ -192,6 +195,7 @@ public class FillPrint extends BaseActivity {
         String modelJson = GsonUtil.parseModelToJson(barcodeModels);
         final Map<String, String> params = new HashMap<String, String>();
         params.put("json", modelJson);
+        params.put("languageType", LanguageUtil.getLanguageType(context));
         LogUtil.WriteLog(CombinPallet.class, TAG_PrintLpkPalletAndroid, modelJson);
         RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_PrintLpkPalletAndroid, getString(R.string.Msg_PrintLpkPalletAndroid), context, mHandler, RESULT_PrintLpkPalletAndroid, null,
                 tbPallet.isChecked() ? URLModel.GetURL().PrintLpkPalletAndroid :

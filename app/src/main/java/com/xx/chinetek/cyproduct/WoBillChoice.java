@@ -15,7 +15,7 @@ import android.widget.ListView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
-import com.xx.chinetek.adapter.product.BillsStockIn.BillAdapter;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.product.WoBillChioceItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -42,7 +42,6 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static com.xx.chinetek.cywms.R.id.edt_filterContent;
@@ -240,6 +239,7 @@ public class WoBillChoice extends BaseActivity implements SwipeRefreshLayout.OnR
             Map<String, String> params = new HashMap<>();
 //            params.put("No", GsonUtil.parseModelToJson(Fileter));
             params.put("No", Fileter);
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(BillsIn.class, TAG_GetT_Sync,Fileter);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_Sync, getString(R.string.Msg_SycWOInfo), context, mHandler,
                     RESULT_GetT_Sync, null, URLModel.GetURL().Sync_WoinfoModel, params, null);

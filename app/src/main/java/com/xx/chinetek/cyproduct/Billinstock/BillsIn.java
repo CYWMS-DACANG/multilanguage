@@ -6,22 +6,20 @@ import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.Filter;
 import android.widget.ListView;
 import android.widget.Switch;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.Pallet.CombinPallet;
 import com.xx.chinetek.adapter.product.BillsStockIn.BillAdapter;
-import com.xx.chinetek.adapter.wms.QC.QCBillChioceItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
 import com.xx.chinetek.base.ToolBarTitle;
@@ -48,8 +46,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static com.xx.chinetek.base.BaseApplication.userInfo;
 
 /**
  * Created by ymh on 2017/8/22.
@@ -228,6 +224,7 @@ public class BillsIn  extends BaseActivity implements SwipeRefreshLayout.OnRefre
                         final Map<String, String> params = new HashMap<String, String>();
                         params.put("Barcode", barcode);
                         params.put("PalletModel", "1");
+                        params.put("languageType", LanguageUtil.getLanguageType(context));
                         LogUtil.WriteLog(BillsIn.class, TAG_GetT_PalletDetailByNoADF, barcode);
                         RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_PalletDetailByNoADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_GetT_SerialNoByPalletADF, null,  URLModel.GetURL().GetT_PalletDetailByNoADF, params, null);
                         return false;
@@ -298,6 +295,7 @@ public class BillsIn  extends BaseActivity implements SwipeRefreshLayout.OnRefre
             Map<String, String> params = new HashMap<>();
 //            params.put("No", GsonUtil.parseModelToJson(Fileter));
             params.put("No", Fileter);
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(BillsIn.class, TAG_GetT_Sync,Fileter);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_Sync, getString(R.string.Msg_SycWOInfo), context, mHandler,
                     RESULT_GetT_Sync, null, URLModel.GetURL().Sync_WoinfoModel, params, null);
@@ -375,6 +373,7 @@ public class BillsIn  extends BaseActivity implements SwipeRefreshLayout.OnRefre
         try {
             Map<String, String> params = new HashMap<>();
             params.put("WoInfoJson", GsonUtil.parseModelToJson(model));
+            params.put("languageType",LanguageUtil.getLanguageType(context));
 //            LogUtil.WriteLog(BillsIn.class, TAG_GetT_InBill,model);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_WoninfoBack, getString(R.string.Msg_GetWOInfo), context, mHandler,
                     RESULT_GetT_WoninfoBack, null,  URLModel.GetURL().GetT_WoinfoModelBack, params, null);

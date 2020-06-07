@@ -18,13 +18,11 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
-import com.xx.chinetek.adapter.product.BillsStockIn.WoBatchAlldapter;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.product.Manage.UserInfoItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
 import com.xx.chinetek.base.ToolBarTitle;
-import com.xx.chinetek.cyproduct.Billinstock.BillsIn;
-import com.xx.chinetek.cyproduct.LineStockIn.LineStockInBackProduct;
 import com.xx.chinetek.cywms.R;
 import com.xx.chinetek.model.Base_Model;
 import com.xx.chinetek.model.Production.Manage.LineManageModel;
@@ -41,7 +39,6 @@ import com.xx.chinetek.util.function.CommonUtil;
 import com.xx.chinetek.util.function.GsonUtil;
 import com.xx.chinetek.util.log.LogUtil;
 
-import org.xutils.common.task.AbsTask;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
@@ -179,6 +176,7 @@ Context context=ProductManage.this;
     void Getstate(){
         final Map<String, String> params = new HashMap<String, String>();
         params.put("modelid", String.valueOf(lineManageModel.getID()));
+        params.put("languageType", LanguageUtil.getLanguageType(context));
         RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetLinemanagestate, getString(R.string.get_plan_status), context, mHandler, RESULT_GetLinemanagestate, null,  URLModel.GetURL().GetLinemanagestate, params, null);
 
     }
@@ -252,6 +250,7 @@ Context context=ProductManage.this;
                 final Map<String, String> paramsa = new HashMap<String, String>();
                 paramsa.put("UserJson", userJsona);
                 paramsa.put("WoInfoJson", modelJsona);
+                paramsa.put("languageType",LanguageUtil.getLanguageType(context));
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_BaogongADF,  getString(R.string.process_work_report), context, mHandler, RESULT_BaogongADF, null, URLModel.GetURL().GetBaoGongByListWoinfo, paramsa, null);
 
             }
@@ -261,6 +260,7 @@ Context context=ProductManage.this;
                 final Map<String, String> params = new HashMap<String, String>();
                 params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
                 params.put("modelid", String.valueOf(lineManageModel.getID()));
+                params.put("languageType",LanguageUtil.getLanguageType(context));
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_StartWork, context.getString(R.string.StartProduct), context, mHandler, RESULT_StartWork, null,  URLModel.GetURL().StartWork, params, null);
             }
             if (R.id.buttonstop == view.getId()) {
@@ -274,6 +274,7 @@ Context context=ProductManage.this;
                 final Map<String, String> params = new HashMap<String, String>();
                 params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
                 params.put("modelid", String.valueOf(lineManageModel.getID()));
+                params.put("languageType",LanguageUtil.getLanguageType(context));
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_OverWork, context.getString(R.string.ReportOver), context, mHandler, RESULT_OverWork, null,  URLModel.GetURL().OverWork, params, null);
 
             }
@@ -284,6 +285,7 @@ Context context=ProductManage.this;
                 params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
                 params.put("modelid", String.valueOf(lineManageModel.getID()));
                 params.put("Flag", "1");
+                params.put("languageType",LanguageUtil.getLanguageType(context));
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SuspendOrReWork, getString(R.string.suspend), context, mHandler, RESULT_SuspendOrReWork, null,  URLModel.GetURL().SuspendOrReWork, params, null);
 
             }
@@ -294,6 +296,7 @@ Context context=ProductManage.this;
                 params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
                 params.put("modelid", String.valueOf(lineManageModel.getID()));
                 params.put("Flag", "2");
+                params.put("languageType",LanguageUtil.getLanguageType(context));
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SuspendOrReWork, getString(R.string.restart), context, mHandler, RESULT_SuspendOrReWork, null,  URLModel.GetURL().SuspendOrReWork, params, null);
 
             }
@@ -315,6 +318,7 @@ Context context=ProductManage.this;
         try {
             final Map<String, String> params = new HashMap<String, String>();
             params.put("UserNo", userCode);
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(ProductManage.class, TAG_GetT_UserInfoModel, userCode);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_UserInfoModel, context.getString(R.string.Msg_GetUser), context, mHandler, RESULT_GetT_UserInfoModel, null,  URLModel.GetURL().GetWareHouseByUserADF, params, null);
         } catch (Exception ex) {
@@ -343,6 +347,7 @@ Context context=ProductManage.this;
                         params.put("model", GsonUtil.parseModelToJson(lineManageModel));
                         params.put("userno", userInfo.getUserNo());
                         params.put("flag", "1");
+                        params.put("languageType",LanguageUtil.getLanguageType(context));
                         RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_UpdateLineManageUser, getString(R.string.add_user), context, mHandler, RESULT_UpdateLineManageUser, null,  URLModel.GetURL().UpdateLineManageUser, params, null);
 
                     }else{
@@ -429,6 +434,7 @@ Context context=ProductManage.this;
                     final Map<String, String> paramsa = new HashMap<String, String>();
                     paramsa.put("UserJson", userJsona);
                     paramsa.put("WoInfoJson", modelJsona);
+                    paramsa.put("languageType",LanguageUtil.getLanguageType(context));
                     RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_BaogongADF,  context.getString(R.string.process_work_report), context, mHandler, RESULT_BaogongADF, null, URLModel.GetURL().GetBaoGongByListWoinfo, paramsa, null);
 
                 }
@@ -514,6 +520,7 @@ Context context=ProductManage.this;
                         params.put("model", GsonUtil.parseModelToJson(lineManageModel));
                         params.put("userno", lineManageModel.getUserInfos().get(index).getUserNo());
                         params.put("flag", "2");
+                        params.put("languageType",LanguageUtil.getLanguageType(context));
                         RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_UpdateLineManageUser, getString(R.string.process_delete_user), context, mHandler, RESULT_UpdateLineManageUser, null,  URLModel.GetURL().UpdateLineManageUser, params, null);
 
                         lineManageModel.getUserInfos().remove(index);

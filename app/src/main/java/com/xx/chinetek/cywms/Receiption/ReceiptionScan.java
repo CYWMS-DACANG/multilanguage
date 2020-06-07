@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.wms.Receiption.ReceiptScanDetailAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -145,6 +146,7 @@ public class ReceiptionScan extends BaseActivity {
             final Map<String, String> params = new HashMap<String, String>();
             params.put("BarCode", code);
             params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(ReceiptionScan.class, TAG_GetT_PalletDetailByBarCodeADF, code);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_PalletDetailByBarCodeADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_Msg_GetT_PalletDetailByBarCode, null,  URLModel.GetURL().GetT_PalletDetailByBarCodeADF, params, null);
         }
@@ -196,6 +198,7 @@ public class ReceiptionScan extends BaseActivity {
                 String UserJson = GsonUtil.parseModelToJson(BaseApplication.userInfo);
                 params.put("UserJson", UserJson);
                 params.put("ModelJson", ModelJson);
+                params.put("languageType",LanguageUtil.getLanguageType(context));
                 LogUtil.WriteLog(ReceiptionScan.class, TAG_SaveT_InStockDetailADF, ModelJson);
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveT_InStockDetailADF, getString(R.string.Msg_SaveT_InStockDetailADF), context, mHandler, RESULT_Msg_SaveT_InStockDetailADF, null, URLModel.GetURL().SaveT_InStockDetailADF, params, null);
             }
@@ -215,6 +218,7 @@ public class ReceiptionScan extends BaseActivity {
             receiptDetailModel.setVoucherType(receiptModel.getVoucherType());
             final Map<String, String> params = new HashMap<String, String>();
             params.put("ModelDetailJson", parseModelToJson(receiptDetailModel));
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             String para = (new JSONObject(params)).toString();
             LogUtil.WriteLog(ReceiptionScan.class, TAG_GetT_InStockDetailListByHeaderIDADF, para);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_InStockDetailListByHeaderIDADF, getString(R.string.Msg_GetT_InStockDetailListByHeaderIDADF), context, mHandler, RESULT_Msg_GetT_InStockDetailListByHeaderIDADF, null,  URLModel.GetURL().GetT_InStockDetailListByHeaderIDADF, params, null);

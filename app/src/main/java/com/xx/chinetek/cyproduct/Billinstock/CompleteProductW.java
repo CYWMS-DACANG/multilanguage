@@ -1,9 +1,7 @@
 package com.xx.chinetek.cyproduct.Billinstock;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
@@ -17,6 +15,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.base.BaseApplication;
 import com.xx.chinetek.base.SocketBaseActivity;
 import com.xx.chinetek.base.ToolBarTitle;
@@ -258,6 +257,7 @@ public class CompleteProductW extends  SocketBaseActivity {
             params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
             params.put("json", GsonUtil.parseModelToJson(models));
             params.put("printtype", GsonUtil.parseModelToJson(0));
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_Print_OutlabelW, getString(R.string.Msg_Print), context, mHandler,RESULT_Print_OutlabelW, null,  URLModel.GetURL().PrintLabel, params, null);
 
         } catch (Exception ex) {

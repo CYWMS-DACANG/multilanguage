@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.wms.Pallet.PalletItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -170,6 +171,7 @@ public class CombinPalletSupplier extends BaseActivity {
             final Map<String, String> params = new HashMap<String, String>();
             params.put("Barcode", barcode);
             params.put("PalletModel", "1"); //1：新建托盘  2：插入组托
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(CombinPalletSupplier.class, TAG_GetT_PalletDetailByNoADF, barcode);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_PalletDetailByNoADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_GetT_SerialNoByPalletADF, null,  URLModel.GetURL().GetT_PalletDetailByNoADF, params, null);
             return true;
@@ -204,6 +206,7 @@ public class CombinPalletSupplier extends BaseActivity {
             final Map<String, String> params = new HashMap<String, String>();
             params.put("Barcode", barcode);
             params.put("PalletModel","2"); //1：新建托盘  2：插入组托
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(CombinPalletSupplier.class, TAG_GetT_PalletDetailByNoADF, barcode);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_PalletDetailByNoADF, getString(R.string.Msg_GetT_PalletADF), context, mHandler, RESULT_GetT_PalletDetailByNoADF, null,  URLModel.GetURL().GetT_PalletDetailByNoADF, params, null);
             return true;
@@ -235,6 +238,7 @@ public class CombinPalletSupplier extends BaseActivity {
                 params.put("UserJson", userJson);
                 params.put("json", modelJson);
                 params.put("printtype", "1");
+            params.put("languageType",LanguageUtil.getLanguageType(context));
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveT_ProductPalletDetailADF, getString(R.string.Msg_SaveT_PalletDetailADF), context, mHandler, RESULT_GetT_ProductPalletDetailByNoADF, null, URLModel.GetURL().SaveT_CPPalletDetailADFSup, params, null);
         }
     }

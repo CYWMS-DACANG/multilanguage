@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.product.LineStockOut.LineStockOutReturnBillAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -131,6 +132,7 @@ public class LineStockOutReturnBillChoice extends BaseActivity implements SwipeR
                     //扫描箱条码
                     final Map<String, String> params = new HashMap<String, String>();
                     params.put("BarCode", code);
+                    params.put("languageType", LanguageUtil.getLanguageType(context));
                     LogUtil.WriteLog(ReceiptBillChoice.class, TAG_GetT_PalletDetailByBarCode, code);
                     RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_PalletDetailByBarCode, getString(R.string.Msg_GetT_InStockListADF), context, mHandler, RESULT_GetT_PalletDetailByBarCode, null,  URLModel.GetURL().GetPalletDetailByBarCodeForStockOut, params, null);
                     return false;
@@ -154,6 +156,7 @@ public class LineStockOutReturnBillChoice extends BaseActivity implements SwipeR
             Map<String, String> params = new HashMap<>();
             params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
             params.put("ModelJson", ModelJson);
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(LineStockOutReturnBillChoice.class, TAG_GetT_InStockList, ModelJson);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_InStockList, getString(R.string.Msg_GetT_ReturnStockListADF), context, mHandler, RESULT_GetT_InStockList, null,  URLModel.GetURL().GetT_InStockListADF, params, null);
         } catch (Exception ex) {

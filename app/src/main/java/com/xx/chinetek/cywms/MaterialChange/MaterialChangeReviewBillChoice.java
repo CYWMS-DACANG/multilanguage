@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.wms.Review.ReviewBillChioceItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -178,6 +179,7 @@ public class MaterialChangeReviewBillChoice extends BaseActivity implements Swip
             receiptDetailModel.setVoucherType(receiptModel.getVoucherType());
             final Map<String, String> params = new HashMap<String, String>();
             params.put("ModelDetailJson", parseModelToJson(receiptDetailModel));
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             String para = (new JSONObject(params)).toString();
             LogUtil.WriteLog(ReceiptionScan.class, TAG_GetT_InStockDetailListByHeaderIDADF, para);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_InStockDetailListByHeaderIDADF, getString(R.string.Msg_GetT_InStockDetailListByHeaderIDADF), context, mHandler, RESULT_Msg_GetT_InStockDetailListByHeaderIDADF, null,  URLModel.GetURL().GetT_InStockDetailListByHeaderIDADF, params, null);
@@ -213,6 +215,7 @@ public class MaterialChangeReviewBillChoice extends BaseActivity implements Swip
             outStockDetailInfoModel1.setVoucherType(outStockModel.getVoucherType());
             final Map<String, String> params = new HashMap<String, String>();
             params.put("ModelDetailJson", parseModelToJson(outStockDetailInfoModel1));
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             String para = (new JSONObject(params)).toString();
             LogUtil.WriteLog(ReviewScan.class, TAG_GetT_OutStockReviewDetailListByHeaderIDADF, para);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_OutStockReviewDetailListByHeaderIDADF, getString(R.string.Msg_GetT_OutStockDetailListByHeaderIDADF), context, mHandler, RESULT_GetT_OutStockReviewDetailListByHeaderIDADF, null,  URLModel.GetURL().GetT_OutStockReviewDetailListByHeaderIDADF, params, null);
@@ -247,6 +250,7 @@ public class MaterialChangeReviewBillChoice extends BaseActivity implements Swip
             Map<String, String> params = new HashMap<>();
             params.put("UserJson", parseModelToJson(BaseApplication.userInfo));
             params.put("ModelJson", ModelJson);
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(MaterialChangeReviewBillChoice.class, TAG_GetT_OutStockReviewListADF, ModelJson);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_OutStockReviewListADF, getString(R.string.Msg_GetT_OutStockListADF), context, mHandler, RESULT_GetT_OutStockReviewListADF, null,  URLModel.GetURL().GetT_OutStockReviewListADF, params, null);
         } catch (Exception ex) {

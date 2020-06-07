@@ -18,6 +18,7 @@ import android.widget.ListView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.wms.OffShelf.OffSehlfBillChoiceItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -147,6 +148,7 @@ public class OffShelfBillChoice extends BaseActivity  implements SwipeRefreshLay
                             Map<String, String> params = new HashMap<>();
                             String UserModel = GsonUtil.parseModelToJson(BaseApplication.userInfo);
                             params.put("UserJson", UserModel);
+                            params.put("languageType", LanguageUtil.getLanguageType(context));
                             LogUtil.WriteLog(OffShelfBillChoice.class, TAG_GetPickUserListByUserADF, UserModel);
                             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetPickUserListByUserADF, getString(R.string.Msg_GetT_GetPickUserListByUserADF), context, mHandler, RESULT_GetPickUserListByUserADF, null, URLModel.GetURL().GetPickUserListByUserADF, params, null);
                         }
@@ -251,6 +253,7 @@ public class OffShelfBillChoice extends BaseActivity  implements SwipeRefreshLay
             Map<String, String> params = new HashMap<>();
             params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
             params.put("ModelJson", ModelJson);
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(OffShelfBillChoice.class, TAG_GetT_OutTaskListADF, ModelJson);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_OutTaskListADF, getString(R.string.Msg_GetT_OutTaskListADF), context, mHandler,
                     RESULT_GetT_OutTaskListADF, null,  URLModel.GetURL().GetT_OutTaskListADF, params, null);
@@ -309,6 +312,7 @@ public class OffShelfBillChoice extends BaseActivity  implements SwipeRefreshLay
             String UserJson= GsonUtil.parseModelToJson(uerInfos);
             params.put("UserJson",UserJson);
             params.put("ModelJson", ModelJson);
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(OffShelfBillChoice.class, TAG_SavePickUserListADF, ModelJson);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SavePickUserListADF, getString(R.string.Msg_SavePickUserListADF), context, mHandler, RESULT_SavePickUserListADF, null,  URLModel.GetURL().SavePickUserListADF, params, null);
         } catch (Exception ex) {

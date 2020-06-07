@@ -16,10 +16,10 @@ import android.widget.ToggleButton;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.product.Manage.WoDetailMaterialItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
-import com.xx.chinetek.cyproduct.Adjust.AdjustCP;
 import com.xx.chinetek.cyproduct.Manage.ProductMaterialConfig;
 import com.xx.chinetek.cywms.R;
 import com.xx.chinetek.model.Base_Model;
@@ -30,7 +30,6 @@ import com.xx.chinetek.model.ReturnMsgModel;
 import com.xx.chinetek.model.ReturnMsgModelList;
 import com.xx.chinetek.model.URLModel;
 import com.xx.chinetek.model.User.UerInfo;
-import com.xx.chinetek.model.User.UserInfo;
 import com.xx.chinetek.model.WMS.Stock.StockInfo_Model;
 import com.xx.chinetek.util.Network.NetworkError;
 import com.xx.chinetek.util.Network.RequestHandler;
@@ -210,6 +209,7 @@ public class LineStockOutMaterial extends BaseActivity {
                 params.put("strOldBarCode", strOldBarCode);
                 params.put("strNewBarCode", "");
                 params.put("PrintFlag", "1"); //1：打印 2：不打印
+                params.put("languageType",LanguageUtil.getLanguageType(context));
                 LogUtil.WriteLog(LineStockOutMaterial.class, TAG_SaveT_BarCodeToStockADF, strOldBarCode);
 //              RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveT_BarCodeToStockADF, getString(R.string.Msg_SaveT_BarCodeToStockADF), context, mHandler, RESULT_SaveT_BarCodeToStockADF, null, URLModel.GetURL().SaveT_BarCodeToStockADF, params, null);
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveT_BarCodeToStockADF, getString(R.string.Msg_SaveT_BarCodeToStockADF), context, mHandler, RESULT_SaveT_BarCodeToStockADF, null, URLModel.GetURL().SaveNewBarcodeToStockForChaiXiang, params, null);
@@ -256,6 +256,7 @@ public class LineStockOutMaterial extends BaseActivity {
                 String ModelJson = GsonUtil.parseModelToJson(allstocks);
                 params.put("UserJson", userJson);
                 params.put("ModelJson", ModelJson);
+                params.put("languageType",LanguageUtil.getLanguageType(context));
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveBarcodeListOutStockForLingLiao, getString(R.string.Mag_GetWoDetailModelByWoNo), context, mHandler, RESULT_SaveBarcodeListOutStockForLingLiao, null, URLModel.GetURL().SaveBarcodeListOutStockForLingLiao, params, null);
             } catch (Exception ex) {
                 MessageBox.Show(context, ex.getMessage());
@@ -270,6 +271,7 @@ public class LineStockOutMaterial extends BaseActivity {
             try {
                 Map<String, String> params = new HashMap<>();
                 params.put("HeadId", woModel.getID() + "");
+                params.put("languageType",LanguageUtil.getLanguageType(context));
                 LogUtil.WriteLog(LineStockOutMaterial.class, TAG_GetWoDetailModelByWoNo, woModel.getID() + "");
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetWoDetailModelByWoNo, getString(R.string.Mag_GetWoDetailModelByWoNo), context, mHandler, RESULT_GetWoDetailModelByWoNo, null, URLModel.GetURL().GetWoDetailModelByWoNo, params, null);
             } catch (Exception ex) {

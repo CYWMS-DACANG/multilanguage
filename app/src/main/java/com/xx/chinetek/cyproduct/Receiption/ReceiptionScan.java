@@ -12,17 +12,18 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.product.Receiption.ReceiptionScanItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
 import com.xx.chinetek.cywms.OffShelf.OffshelfScan;
 import com.xx.chinetek.cywms.R;
 import com.xx.chinetek.model.Material.BarCodeInfo;
+import com.xx.chinetek.model.ReturnMsgModelList;
+import com.xx.chinetek.model.URLModel;
 import com.xx.chinetek.model.WMS.OffShelf.OutStockTaskDetailsInfo_Model;
 import com.xx.chinetek.model.WMS.OffShelf.OutStockTaskInfo_Model;
-import com.xx.chinetek.model.ReturnMsgModelList;
 import com.xx.chinetek.model.WMS.Stock.StockInfo_Model;
-import com.xx.chinetek.model.URLModel;
 import com.xx.chinetek.util.Network.NetworkError;
 import com.xx.chinetek.util.Network.RequestHandler;
 import com.xx.chinetek.util.dialog.MessageBox;
@@ -141,6 +142,7 @@ public class ReceiptionScan extends BaseActivity {
             final Map<String, String> params = new HashMap<String, String>();
             params.put("BarCode", code);
             params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(ReceiptionScan.class, TAG_GetT_PalletDetailByBarCodeADF, code);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_PalletDetailByBarCodeADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_Msg_GetT_PalletDetailByBarCode, null,  URLModel.GetURL().GetT_PalletDetailByBarCodeADF, params, null);
         }
@@ -158,6 +160,7 @@ public class ReceiptionScan extends BaseActivity {
             final Map<String, String> params = new HashMap<String, String>();
             params.put("ModelDetailJson", parseModelToJson(outStockTaskDetailsInfoModel));
             String para = (new JSONObject(params)).toString();
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(OffshelfScan.class, TAG_GetT_OutTaskDetailListByHeaderIDADF, para);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_OutTaskDetailListByHeaderIDADF, getString(R.string.Msg_QualityDetailListByHeaderIDADF), context, mHandler, RESULT_Msg_GetT_OutTaskDetailListByHeaderIDADF, null,  URLModel.GetURL().GetT_OutTaskDetailListByHeaderIDADF, params, null);
         }

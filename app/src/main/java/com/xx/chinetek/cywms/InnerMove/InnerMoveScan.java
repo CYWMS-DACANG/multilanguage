@@ -17,6 +17,7 @@ import android.widget.ToggleButton;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.wms.InnerMove.InnerMoveAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -231,6 +232,7 @@ public class InnerMoveScan extends BaseActivity {
                 params.put("ScanType", TBMoveType.isChecked()?"1":"2");
                 params.put("MoveType", "2"); //1：下架 2:移库
                 params.put("IsEdate",isEDate); //1：不判断有效期 2:判断有效期
+                params.put("languageType", LanguageUtil.getLanguageType(context));
                 LogUtil.WriteLog(InnerMoveScan.class, TAG_GetStockModelADF, barcode);
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetStockModelADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_Msg_GetStockModelADF, null, URLModel.GetURL().GetStockModelADF, params, null);
             }
@@ -276,6 +278,7 @@ public class InnerMoveScan extends BaseActivity {
                 String ModelJson = GsonUtil.parseModelToJson(stockInfoModels);
                 params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
                 params.put("ModelJson", ModelJson);
+            params.put("languageType", LanguageUtil.getLanguageType(context));
                 LogUtil.WriteLog(InnerMoveScan.class, TAG_SaveT_StockADF, ModelJson);
                 if(FunctionType==0)
                     RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveT_StockADF, getString(R.string.Msg_SaveT_StockADF), context, mHandler, RESULT_SaveT_StockADF, null, URLModel.isWMS ? URLModel.GetURL().SaveT_StockADF : URLModel.GetURL().SaveT_StockADF_Product, params, null);
@@ -318,6 +321,7 @@ public class InnerMoveScan extends BaseActivity {
                             params.put("AreaNo", StockCode);
                             params.put("WareHouseID", BaseApplication.userInfo.getWarehouseID() + "");
                             params.put("ModelJson", ModelJson);
+                            params.put("languageType", LanguageUtil.getLanguageType(context));
                             LogUtil.WriteLog(InnerMoveScan.class, TAG_GetAreaModelByMoveStockADF, StockCode + "|" + ModelJson);
                             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetAreaModelByMoveStockADF, getString(R.string.Msg_GetAreaModelADF), context, mHandler, RESULT_GetAreaModelByMoveStockADF, null, URLModel.GetURL().GetAreaModelByMoveStockADF, params, null);
                         }else{

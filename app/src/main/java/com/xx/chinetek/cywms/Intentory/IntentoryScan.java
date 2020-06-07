@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.wms.Intentory.InventoryScanItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -158,6 +159,7 @@ public class IntentoryScan extends BaseActivity {
                 final Map<String, String> params = new HashMap<String, String>();
                 params.put("checkno", checkModel.getCHECKNO());
                 params.put("areano", areaNo);
+                params.put("languageType", LanguageUtil.getLanguageType(context));
                 String para = (new JSONObject(params)).toString();
                 LogUtil.WriteLog(IntentoryScan.class, TAG_GetAreanobyCheckno2, para);
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetAreanobyCheckno2, getString(R.string.Msg_GetAreanobyCheckno2), context, mHandler, RESULT_GetAreanobyCheckno2, null, URLModel.GetURL().GetAreanobyCheckno2, params, null);
@@ -197,6 +199,7 @@ public class IntentoryScan extends BaseActivity {
             if (!barcode.equals("")) {
                 final Map<String, String> params = new HashMap<String, String>();
                 params.put("barcode", barcode);
+                params.put("languageType", LanguageUtil.getLanguageType(context));
                 String para = (new JSONObject(params)).toString();
                 LogUtil.WriteLog(IntentoryScan.class, TAG_GetScanInfo, para);
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetScanInfo, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_Msg_GetScanInfo, null, URLModel.GetURL().GetScanInfo, params, null);
@@ -249,6 +252,7 @@ public class IntentoryScan extends BaseActivity {
             txtVourcherNo.setText(checkModel.getCHECKNO());
             final Map<String, String> params = new HashMap<String, String>();
             params.put("checkno", checkModel.getCHECKNO());
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             String para = (new JSONObject(params)).toString();
             LogUtil.WriteLog(IntentoryScan.class, TAG_GetAreanobyCheckno, para);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetAreanobyCheckno, getString(R.string.Msg_GetAreanobyCheckno), context, mHandler, RESULT_Msg_GetAreanobyCheckno, null,  URLModel.GetURL().GetAreanobyCheckno, params, null);
@@ -354,6 +358,7 @@ public class IntentoryScan extends BaseActivity {
         final Map<String, String> params = new HashMap<String, String>();
         String ModelJson= GsonUtil.parseModelToJson(barcodeModels);
         params.put("json", ModelJson);
+        params.put("languageType", LanguageUtil.getLanguageType(context));
         LogUtil.WriteLog(IntentoryScan.class, TAG_InsertCheckDetail, ModelJson);
         RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_InsertCheckDetail, getString(R.string.Msg_InsertCheckDetail), context, mHandler, RESULT_Msg_InsertCheckDetail, null, URLModel.GetURL().InsertCheckDetail, params, null);
 

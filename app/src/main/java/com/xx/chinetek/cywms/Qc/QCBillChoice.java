@@ -18,6 +18,7 @@ import android.widget.ListView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.wms.QC.QCBillChioceItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -169,6 +170,7 @@ public class QCBillChoice extends BaseActivity implements SwipeRefreshLayout.OnR
                     String code = edtfilterContent.getText().toString().trim();
                     final Map<String, String> params = new HashMap<String, String>();
                     params.put("BarCode", code);
+                    params.put("languageType", LanguageUtil.getLanguageType(context));
                     LogUtil.WriteLog(QCBillChoice.class, TAG_GetT_OutBarCodeInfoForQuanADF, code);
                     RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_OutBarCodeInfoForQuanADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_Msg_GetT_OutBarCodeInfoForQuanADF, null, URLModel.GetURL().GetT_OutBarCodeInfoForQuanADF, params, null);
 
@@ -253,6 +255,7 @@ public class QCBillChoice extends BaseActivity implements SwipeRefreshLayout.OnR
             params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
             params.put("ModelJson", ModelJson);
             LogUtil.WriteLog(QCBillChoice.class, TAG_GetT_QualityListADF, ModelJson);
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_QualityListADF, getString(R.string.Msg_GetT_QualityListADF), context, mHandler, RESULT_GetT_QualityListADF, null,  URLModel.GetURL().GetT_QualityListADF, params, null);
         } catch (Exception ex) {
             mSwipeLayout.setRefreshing(false);

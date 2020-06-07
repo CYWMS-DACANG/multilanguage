@@ -17,8 +17,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.Request;
-import com.google.gson.annotations.Until;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.Pallet.CombinPallet;
 import com.xx.chinetek.Service.SocketService;
 import com.xx.chinetek.base.BaseApplication;
@@ -47,12 +47,11 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-
-import ch.qos.logback.core.joran.spi.ElementSelector;
 
 
 @ContentView(R.layout.activity_complete_product)
@@ -692,7 +691,7 @@ public class CompleteProduct extends  SocketBaseActivity {
                 Returnpath=RESULT_Print_Inlabel;
             }
 
-
+            params.put("languageType",LanguageUtil.getLanguageType(context));
 //            LogUtil.WriteLog(OffShelfBillChoice.class, TAG_GetT_OutTaskListADF, ModelJson);
             RequestHandler.addRequestWithDialog(Request.Method.POST, path, getString(R.string.Msg_Print), context, mHandler,Returnpath, null,  URLModel.GetURL().PrintLabel, params, null);
 //                MessageBox.Show(context, "打印成功！");

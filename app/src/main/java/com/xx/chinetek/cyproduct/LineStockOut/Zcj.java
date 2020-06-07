@@ -1,30 +1,25 @@
 package com.xx.chinetek.cyproduct.LineStockOut;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Message;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.product.Manage.WoDetailMaterialItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
-import com.xx.chinetek.cyproduct.Manage.ProductMaterialConfig;
 import com.xx.chinetek.cywms.R;
 import com.xx.chinetek.model.Base_Model;
 import com.xx.chinetek.model.CheckNumRefMaterial;
 import com.xx.chinetek.model.Production.Wo.WoDetailModel;
-import com.xx.chinetek.model.Production.Wo.WoModel;
 import com.xx.chinetek.model.ReturnMsgModel;
 import com.xx.chinetek.model.ReturnMsgModelList;
 import com.xx.chinetek.model.URLModel;
@@ -34,7 +29,6 @@ import com.xx.chinetek.util.Network.NetworkError;
 import com.xx.chinetek.util.Network.RequestHandler;
 import com.xx.chinetek.util.dialog.MessageBox;
 import com.xx.chinetek.util.dialog.ToastUtil;
-import com.xx.chinetek.util.function.ArithUtil;
 import com.xx.chinetek.util.function.CommonUtil;
 import com.xx.chinetek.util.function.DoubleClickCheck;
 import com.xx.chinetek.util.function.GsonUtil;
@@ -172,6 +166,7 @@ public class Zcj extends BaseActivity {
                 params.put("strOldBarCode", strOldBarCode);
                 params.put("strNewBarCode", "");
                 params.put("PrintFlag", "1"); //0：不打印； 1：打印
+                params.put("languageType",LanguageUtil.getLanguageType(context));
                 LogUtil.WriteLog(Zcj.class, TAG_SaveNewBarcodeToStockForZhiChengJianADF, strOldBarCode);
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveNewBarcodeToStockForZhiChengJianADF, getString(R.string.Msg_SaveT_BarCodeToStockADF), context, mHandler, RESULT_SaveNewBarcodeToStockForZhiChengJianADF, null, URLModel.GetURL().SaveNewBarcodeToStockForZhiChengJian, params, null);
 
@@ -208,6 +203,7 @@ public class Zcj extends BaseActivity {
                     String userJson = GsonUtil.parseModelToJson(user);
                     params.put("UserJson", userJson);
                     params.put("StockInfoJson", GsonUtil.parseModelToJson(stockInfoModelsAll));
+                    params.put("languageType",LanguageUtil.getLanguageType(context));
                     RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_PostZhiChengJianADF, "提交中...", context, mHandler, RESULT_PostZhiChengJianADF, null, URLModel.GetURL().Post_DBZaRuInStockERPADF, params, null);
                 }
 

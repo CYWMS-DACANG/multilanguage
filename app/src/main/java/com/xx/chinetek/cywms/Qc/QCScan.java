@@ -14,6 +14,7 @@ import android.widget.ToggleButton;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.wms.QC.QCDetailAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -163,6 +164,7 @@ public class QCScan extends BaseActivity {
             String code=edtQCScanBarcode.getText().toString().trim();
             final Map<String, String> params = new HashMap<String, String>();
             params.put("BarCode", code);
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(QCScan.class, TAG_GetT_OutBarCodeInfoForQuanADF, code);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_OutBarCodeInfoForQuanADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_Msg_GetT_OutBarCodeInfoForQuanADF, null, URLModel.GetURL().GetT_OutBarCodeInfoForQuanADF, params, null);
         }
@@ -202,6 +204,7 @@ public class QCScan extends BaseActivity {
             params.put("strOldBarCode", strOldBarCode);
             params.put("strNewBarCode", "");
             params.put("PrintFlag","2"); //1：打印 2：不打印
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(QCScan.class, TAG_SaveT_BarCodeToStockADF, strOldBarCode);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveT_BarCodeToStockADF, getString(R.string.Msg_SaveT_BarCodeToStockADF), context, mHandler, RESULT_SaveT_BarCodeToStockADF, null,  URLModel.GetURL().SaveT_BarCodeToStockADF, params, null);
         }
@@ -231,6 +234,7 @@ public class QCScan extends BaseActivity {
                 String UserJson = GsonUtil.parseModelToJson(BaseApplication.userInfo);
                 params.put("UserJson", UserJson);
                 params.put("ModelJson", ModelJson);
+                params.put("languageType",LanguageUtil.getLanguageType(context));
                 LogUtil.WriteLog(QCScan.class, TAG_SaveT_QuanlitySampADF, ModelJson);
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveT_QuanlitySampADF, getString(R.string.Msg_SaveT_QuanlitySampADF), context, mHandler, RESULT_Msg_SaveT_QuanlitySampADF, null, URLModel.GetURL().SaveT_QuanlitySampADF, params, null);
             }
@@ -283,6 +287,7 @@ public class QCScan extends BaseActivity {
             final Map<String, String> params = new HashMap<String, String>();
             params.put("ModelDetailJson", parseModelToJson(qualityDetailInfoModel));
             String para = (new JSONObject(params)).toString();
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(QCScan.class, TAG_GetT_QualityDetailListByHeaderIDADF, para);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_QualityDetailListByHeaderIDADF, getString(R.string.Msg_QualityDetailListByHeaderIDADF), context, mHandler, RESULT_Msg_GetT_QualityDetailListByHeaderIDADF, null,  URLModel.GetURL().GetT_QualityDetailListByHeaderIDADF, params, null);
         }
@@ -441,6 +446,7 @@ public class QCScan extends BaseActivity {
             String ModelJson = GsonUtil.parseModelToJson(temp);
             final Map<String, String> params = new HashMap<String, String>();
             params.put("json", ModelJson);
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(QCBillChoice.class, TAG_PrintQYAndroid, ModelJson);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_PrintQYAndroid, getString(R.string.Msg_PrintQYAndroid), context, mHandler, RESULT_PrintQYAndroid, null, URLModel.GetURL().PrintQYAndroid, params, null);
         }catch (Exception ex){

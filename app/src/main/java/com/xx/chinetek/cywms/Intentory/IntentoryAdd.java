@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.wms.Intentory.InventoryAddItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -135,6 +136,7 @@ public class IntentoryAdd extends BaseActivity {
                   Map<String, String> params = new HashMap<>();
                   params.put("json1",json1);
                   params.put("json2",json2);
+                  params.put("languageType", LanguageUtil.getLanguageType(context));
                   LogUtil.WriteLog(IntentoryAdd.class, TAG_SaveCheckAndroid, json1+"|"+json2);
                   RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveCheckAndroid, getString(R.string.Msg_InsertCheckDetail), context, mHandler, RESULT_SaveCheckAndroid, null,  URLModel.GetURL().SaveCheckAndroid, params, null);
               } catch (Exception ex) {
@@ -160,6 +162,7 @@ public class IntentoryAdd extends BaseActivity {
                         String json = GsonUtil.parseModelToJson(checkAreaModel);
                         Map<String, String> params = new HashMap<>();
                         params.put("json", json);
+                        params.put("languageType", LanguageUtil.getLanguageType(context));
                         LogUtil.WriteLog(IntentoryAdd.class, TAG_GetPDNoAndroid, json);
                         RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetAreanoID, getString(R.string.Msg_GetAreanobyCheckno), context, mHandler, RESULT_GetAreanoID, null, URLModel.GetURL().GetAreanoID, params, null);
                     }else{
@@ -182,6 +185,7 @@ public class IntentoryAdd extends BaseActivity {
     private void txtSelectWohouseClick(View view){
         LogUtil.WriteLog(IntentoryAdd.class, TAG_GetWareHouse,"");
        final Map<String, String> params = new HashMap<>();
+        params.put("languageType", LanguageUtil.getLanguageType(context));
         try {
             if(checkAreaModels!=null && checkAreaModels.size()==0){
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetWareHouse, getString(R.string.Msg_GetWareHouse), context, mHandler, RESULT_GetWareHouse, null,  URLModel.GetURL().GetWareHouse, params, null);
@@ -199,6 +203,7 @@ public class IntentoryAdd extends BaseActivity {
         try {
             Map<String, String> params = new HashMap<>();
             LogUtil.WriteLog(IntentoryAdd.class, TAG_GetPDNoAndroid, "");
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetPDNoAndroid, getString(R.string.Msg_Inventory_Load), context, mHandler, RESULT_GetPDNoAndroid, null,  URLModel.GetURL().GetPDNoAndroid, params, null);
         } catch (Exception ex) {
             MessageBox.Show(context, ex.getMessage());

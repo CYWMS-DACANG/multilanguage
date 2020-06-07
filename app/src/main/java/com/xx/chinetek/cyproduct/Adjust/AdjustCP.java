@@ -18,19 +18,19 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.product.LineStockIn.LineStockInMaterialItemymhAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
 import com.xx.chinetek.base.ToolBarTitle;
-import com.xx.chinetek.cywms.InnerMove.InnerMoveDetail;
 import com.xx.chinetek.cywms.R;
 import com.xx.chinetek.cywms.Receiption.ReceiptionScan;
 import com.xx.chinetek.model.Base_Model;
 import com.xx.chinetek.model.Production.LineStockIn.LineStockInProductModelymh;
 import com.xx.chinetek.model.ReturnMsgModel;
-import com.xx.chinetek.model.ReturnMsgModelList;
 import com.xx.chinetek.model.URLModel;
 import com.xx.chinetek.model.User.WareHouseInfo;
+import com.xx.chinetek.model.WMS.Stock.StockInfo_Model;
 import com.xx.chinetek.util.Network.NetworkError;
 import com.xx.chinetek.util.Network.RequestHandler;
 import com.xx.chinetek.util.dialog.MessageBox;
@@ -40,7 +40,6 @@ import com.xx.chinetek.util.function.CommonUtil;
 import com.xx.chinetek.util.function.DoubleClickCheck;
 import com.xx.chinetek.util.function.GsonUtil;
 import com.xx.chinetek.util.log.LogUtil;
-import com.xx.chinetek.model.WMS.Stock.StockInfo_Model;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
@@ -132,6 +131,7 @@ public class AdjustCP extends BaseActivity {
             }
             final Map<String, String> params = new HashMap<String, String>();
             params.put("BarCode", code);
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(ReceiptionScan.class, TAG_GetPalletDetailByBarCode_Product, code);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetPalletDetailByBarCode_Product, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_Msg_GetPalletDetailByBarCode_Product, null,  URLModel.GetURL().GetStockInfoByBarcodeForDiaoBo, params, null);
         }
@@ -171,6 +171,7 @@ public class AdjustCP extends BaseActivity {
                     String UserJson = GsonUtil.parseModelToJson(BaseApplication.userInfo);
                     params.put("UserJson", UserJson);
                     params.put("StockInfoJson", ModelJson);
+                    params.put("languageType",LanguageUtil.getLanguageType(context));
                     LogUtil.WriteLog(ReceiptionScan.class, TAG_SaveModeListForT_StockT, ModelJson);
                     RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveModeListForT_StockT, getString(R.string.Msg_SaveT_LineInStockProductlYMHADF), context, mHandler, RESULT_SaveModeListForT_StockT, null, URLModel.GetURL().Post_DBOutStockERPADF, params, null);
                 }

@@ -15,6 +15,7 @@ import android.widget.ListView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.wms.Intentory.InventoryItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
@@ -160,6 +161,7 @@ public class InventoryBillChoice extends BaseActivity implements SwipeRefreshLay
         try {
             Map<String, String> params = new HashMap<>();
             LogUtil.WriteLog(InventoryBillChoice.class, TAG_GetCheckADF, "");
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetCheckADF, getString(R.string.Msg_Inventory_Load), context, mHandler,
                     RESULT_GetCheckADF, null, model==1?URLModel.GetURL().GetCheckADF:URLModel.GetURL().GetCheckMing, params, null);
         } catch (Exception ex) {

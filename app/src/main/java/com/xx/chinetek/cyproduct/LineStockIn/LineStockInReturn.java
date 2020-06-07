@@ -14,14 +14,13 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.Pallet.CombinPallet;
 import com.xx.chinetek.Service.SocketService;
 import com.xx.chinetek.base.BaseApplication;
 import com.xx.chinetek.base.SocketBaseActivity;
-import com.xx.chinetek.cyproduct.Billinstock.BillsIn;
 import com.xx.chinetek.cywms.R;
 import com.xx.chinetek.model.Material.BarCodeInfo;
-import com.xx.chinetek.model.Pallet.PalletDetail_Model;
 import com.xx.chinetek.model.Production.Wo.WoDetailModel;
 import com.xx.chinetek.model.Production.Wo.WoModel;
 import com.xx.chinetek.model.ReturnMsgModel;
@@ -95,6 +94,7 @@ public class LineStockInReturn extends SocketBaseActivity {
         try{
             final Map<String, String> params = new HashMap<String, String>();
             params.put("HeadId", HID);
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(LineStockInReturn.class, TAG_Get_WODetailInfo, HID);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_Get_WODetailInfo, getString(R.string.Msg_GetT_Wodetailinfo), context, mHandler, RESULT_Get_WODetailInfo, null,  URLModel.GetURL().GetWODetailInfo, params, null);
         }catch (Exception ex){
@@ -192,6 +192,7 @@ public class LineStockInReturn extends SocketBaseActivity {
                 String Fileter = editBarcode.getText().toString().trim();
                 final Map<String, String> params = new HashMap<String, String>();
                 params.put("SerialNo", Fileter);
+                params.put("languageType",LanguageUtil.getLanguageType(context));
                 LogUtil.WriteLog(LineStockInReturn.class, TAG_Get_barcode, Fileter);
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_Get_barcode, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_Get_barcode, null,  URLModel.GetURL().GetT_SerialNoADF, params, null);
                 return false;
@@ -400,6 +401,7 @@ public class LineStockInReturn extends SocketBaseActivity {
                 path=TAG_Print_Outlabel;
                 Returnpath=RESULT_Print_Outlabel;
 //            }
+            params.put("languageType",LanguageUtil.getLanguageType(context));
             RequestHandler.addRequestWithDialog(Request.Method.POST, path, getString(R.string.Msg_Print), context, mHandler,Returnpath, null,  URLModel.GetURL().PrintLabel, params, null);
         } catch (Exception ex) {
             MessageBox.Show(context, ex.getMessage());

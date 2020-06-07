@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,13 +13,13 @@ import android.widget.ListView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.Pallet.DismantlePallet;
 import com.xx.chinetek.adapter.wms.Review.ReviewBillChioceItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
 import com.xx.chinetek.base.ToolBarTitle;
 import com.xx.chinetek.cywms.R;
-import com.xx.chinetek.model.Material.BarCodeInfo;
 import com.xx.chinetek.model.Pallet.PalletDetail_Model;
 import com.xx.chinetek.model.ReturnMsgModelList;
 import com.xx.chinetek.model.URLModel;
@@ -139,6 +138,7 @@ public class ReviewBillChoice extends BaseActivity implements SwipeRefreshLayout
                     String barcode=code;
                     params.put("Barcode", barcode);
                     params.put("PalletModel","2");
+                    params.put("languageType", LanguageUtil.getLanguageType(context));
                     LogUtil.WriteLog(DismantlePallet.class, TAG_GetT_PalletDetailByNoADF, barcode);
                     RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_PalletDetailByNoADF, getString(R.string.Msg_GetT_PalletADF), context, mHandler, RESULT_GetT_PalletADF, null,  URLModel.GetURL().GetT_PalletDetailByNoADF, params, null);
                 }else{
@@ -151,6 +151,7 @@ public class ReviewBillChoice extends BaseActivity implements SwipeRefreshLayout
                     } else {
                         //扫描箱条码
                         params.put("BarCode", code);
+                        params.put("languageType", LanguageUtil.getLanguageType(context));
                         LogUtil.WriteLog(ReviewBillChoice.class, TAG_ScanOutStockReviewByBarCodeADF, code);
                         RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_ScanOutStockReviewByBarCodeADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_ScanOutStockReviewByBarCodeADF, null,  URLModel.GetURL().ScanOutStockReviewByBarCodeADF, params, null);
                         return false;
@@ -184,6 +185,7 @@ public class ReviewBillChoice extends BaseActivity implements SwipeRefreshLayout
                         //扫描箱条码
                         final Map<String, String> params = new HashMap<String, String>();
                         params.put("BarCode", code);
+                        params.put("languageType", LanguageUtil.getLanguageType(context));
                         LogUtil.WriteLog(ReviewBillChoice.class, TAG_ScanOutStockReviewByBarCodeADF, code);
                         RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_ScanOutStockReviewByBarCodeADF, getString(R.string.Msg_GetT_SerialNoByPalletADF), context, mHandler, RESULT_ScanOutStockReviewByBarCodeADF, null,  URLModel.GetURL().ScanOutStockReviewByBarCodeADF, params, null);
                     }
@@ -215,6 +217,7 @@ public class ReviewBillChoice extends BaseActivity implements SwipeRefreshLayout
             Map<String, String> params = new HashMap<>();
             params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
             params.put("ModelJson", ModelJson);
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(ReviewBillChoice.class, TAG_GetT_OutStockReviewListADF, ModelJson);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetT_OutStockReviewListADF, getString(R.string.Msg_GetT_OutStockListADF), context, mHandler, RESULT_GetT_OutStockReviewListADF, null,  URLModel.GetURL().GetT_OutStockReviewListADF, params, null);
         } catch (Exception ex) {

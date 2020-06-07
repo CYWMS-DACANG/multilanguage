@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.adapter.wms.Intentory.InventoryFincItemAdapter;
 import com.xx.chinetek.adapter.wms.Intentory.InventoryScanItemAdapter;
 import com.xx.chinetek.base.BaseActivity;
@@ -93,6 +94,7 @@ Context context=IntentoryDetial.this;
         else
             params.put("id", id+"");
         String para = (new JSONObject(params)).toString();
+        params.put("languageType", LanguageUtil.getLanguageType(context));
         LogUtil.WriteLog(IntentoryDetial.class, TAG_GetCheckDetail, para);
         RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetCheckDetail,
                 getString(R.string.Msg_GetCheckDetail), context, mHandler, RESULT_Msg_GetCheckDetail,
@@ -115,6 +117,7 @@ Context context=IntentoryDetial.this;
                             String ModelJson = GsonUtil.parseModelToJson(delBarcode);
                             params.put("checkno", checkno);
                             params.put("json", ModelJson);
+                            params.put("languageType", LanguageUtil.getLanguageType(context));
                             String para = (new JSONObject(params)).toString();
                             LogUtil.WriteLog(IntentoryDetial.class, TAG_DeleteCheckDetail, para);
                             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_DeleteCheckDetail, getString(R.string.Msg_DeleteCheckDetail), context, mHandler, RESULT_DeleteCheckDetail, null,  URLModel.GetURL().DeleteCheckDetail, params, null);

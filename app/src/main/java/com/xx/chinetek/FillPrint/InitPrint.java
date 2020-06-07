@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.google.gson.reflect.TypeToken;
+import com.xx.chinetek.Language.LanguageUtil;
 import com.xx.chinetek.base.BaseActivity;
 import com.xx.chinetek.base.BaseApplication;
 import com.xx.chinetek.base.ToolBarTitle;
@@ -177,6 +178,7 @@ public class InitPrint extends BaseActivity {
             String modelJson = GsonUtil.parseModelToJson(barcodeModels);
             final Map<String, String> params = new HashMap<String, String>();
             params.put("json", modelJson);
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(InitPrint.class, TAG_PrintAndroid, modelJson);
             RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_PrintAndroid, getString(R.string.Msg_PrintAndroid), context, mHandler, RESULT_PrintAndroid, null,  URLModel.GetURL().PrintAndroid, params, null);
         }
