@@ -50,7 +50,7 @@ import java.util.Map;
 
 
 /**
- * @desc:  大仓多语言翻译版本
+ * @desc: 大仓多语言翻译版本
  * @param:
  * @return:
  * @author:
@@ -59,11 +59,10 @@ import java.util.Map;
 @ContentView(R.layout.activity_login)
 public class Login extends BaseActivity {
 
-    String TAG="Loagin";
-    String TAG_GetWareHouseByUserADF="Login_GetWareHouseByUserADF";
-    private static final int RESULT_GET_LOGIN_INFO = 101;
+    String TAG                       = "Loagin";
+    String TAG_GetWareHouseByUserADF = "Login_GetWareHouseByUserADF";
+    private static final int RESULT_GET_LOGIN_INFO        = 101;
     private static final int RESULT_GetWareHouseByUserADF = 102;
-
 
 
     @Override
@@ -76,7 +75,7 @@ public class Login extends BaseActivity {
                 AnalysisGetWareHouseByUserADFJson((String) msg.obj);
                 break;
             case NetworkError.NET_ERROR_CUSTOM:
-                ToastUtil.show(context.getString(R.string.get_request_failed)+ msg.obj);
+                ToastUtil.show(context.getString(R.string.get_request_failed) + msg.obj);
                 break;
         }
     }
@@ -89,12 +88,12 @@ public class Login extends BaseActivity {
     EditText edtUserName;
     @ViewInject(R.id.edt_Password)
     EditText edtPassword;
-    int SelectWareHouseID=-1;
+    int SelectWareHouseID = -1;
 
-    Context context=Login.this;
+    Context             context = Login.this;
     List<WareHouseInfo> lstWarehouse;
 
-    Spinner splanguage;
+    Spinner      splanguage;
     ArrayAdapter adapter;
 //
 //    @Override
@@ -108,13 +107,13 @@ public class Login extends BaseActivity {
         x.view().inject(this);
         SharePreferUtil.ReadShare(context);
         SharePreferUtil.ReadUserShare(context);
-        if( BaseApplication.userInfo!=null){
-            edtUserName.setText( BaseApplication.userInfo.getUserNo());
-            edtPassword.setText(DESUtil.decode( BaseApplication.userInfo.getPassWord()));
+        if (BaseApplication.userInfo != null) {
+            edtUserName.setText(BaseApplication.userInfo.getUserNo());
+            edtPassword.setText(DESUtil.decode(BaseApplication.userInfo.getPassWord()));
             txtWareHousName.setText(BaseApplication.userInfo.getWarehouseName());
-            lstWarehouse=BaseApplication.userInfo.getLstWarehouse();
+            lstWarehouse = BaseApplication.userInfo.getLstWarehouse();
         }
-        txtVersion.setText(getString(R.string.login_Version)+(updateVersionService.getVersionCode(context)));
+        txtVersion.setText(getString(R.string.login_Version) + (updateVersionService.getVersionCode(context)));
 
         super.initViews();
 
@@ -126,12 +125,10 @@ public class Login extends BaseActivity {
         splanguage.setAdapter(adapter);
         //获取当前语言
         Configuration configuration = context.getResources().getConfiguration();
-        if(configuration.locale.toString().equals("en"))
-        {
+        if (configuration.locale.toString().equals("en")) {
             splanguage.setSelection(1);
         }
-        if(configuration.locale.toString().equals("ko"))
-        {
+        if (configuration.locale.toString().equals("ko")) {
             splanguage.setSelection(2);
         }
         //添加事件Spinner事件监听
@@ -139,33 +136,29 @@ public class Login extends BaseActivity {
     }
 
     //使用XML形式操作
-    class SpinnerXMLSelectedListener implements OnItemSelectedListener{
+    class SpinnerXMLSelectedListener implements OnItemSelectedListener {
         public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
                                    long arg3) {
             //选择语言
             boolean need = false;
-            switch (adapter.getItem(arg2).toString())
-            {
+            switch (adapter.getItem(arg2).toString()) {
                 case "中文":
-                    need = LanguageUtil.updateLocale(context,LanguageUtil.LOCALE_CHINESE);
-                    if(need)
-                    {
+                    need = LanguageUtil.updateLocale(context, LanguageUtil.LOCALE_CHINESE);
+                    if (need) {
                         AppManager.getAppManager().recreateAllActivity(Login.this);
 //                        MessageBox.Show(context,getResources().getString(R.string.change_language));
                     }
                     break;
                 case "English":
-                    need = LanguageUtil.updateLocale(context,LanguageUtil.LOCALE_ENGLISH);
-                    if(need)
-                    {
+                    need = LanguageUtil.updateLocale(context, LanguageUtil.LOCALE_ENGLISH);
+                    if (need) {
                         AppManager.getAppManager().recreateAllActivity(Login.this);
 //                        MessageBox.Show(context,getResources().getString(R.string.change_language));
                     }
                     break;
                 case "한글":
-                    need = LanguageUtil.updateLocale(context,LanguageUtil.LOCALE_KOREAN);
-                    if(need)
-                    {
+                    need = LanguageUtil.updateLocale(context, LanguageUtil.LOCALE_KOREAN);
+                    if (need) {
                         AppManager.getAppManager().recreateAllActivity(Login.this);
 //                        MessageBox.Show(context,getResources().getString(R.string.change_language));
                     }
@@ -189,28 +182,30 @@ public class Login extends BaseActivity {
         return false;
     }
 
-    @Event(value = R.id.txt_WareHousName,  type = View.OnClickListener.class)
-    private void  txtWareHousNameOnClick(View v) {
-            GetWareHouse();
+    @Event(value = R.id.txt_WareHousName, type = View.OnClickListener.class)
+    private void txtWareHousNameOnClick(View v) {
+        GetWareHouse();
     }
 
 
     @Event(R.id.btn_Login)
-    private  void  btnLoginClick(View view){
-        if(TextUtils.isEmpty(URLModel.PrintIP)){
-            MessageBox.Show(context,getString(R.string.Error_PrintIPNotSet));
+    private void btnLoginClick(View view) {
+//        BaseApplication.userInfo=null;
+        if (TextUtils.isEmpty(URLModel.PrintIP)) {
+            MessageBox.Show(context, getString(R.string.Error_PrintIPNotSet));
             return;
         }
-        if(!URLModel.isWMS && TextUtils.isEmpty(URLModel.ElecIP)){
-            MessageBox.Show(context,getString(R.string.Error_PrintIPNotSet));
+        if (!URLModel.isWMS && TextUtils.isEmpty(URLModel.ElecIP)) {
+            MessageBox.Show(context, getString(R.string.Error_PrintIPNotSet));
             return;
         }
-        String userName=edtUserName.getText().toString().trim();
-        String password=edtPassword.getText().toString().trim();
+
+        String userName = edtUserName.getText().toString().trim();
+        String password = edtPassword.getText().toString().trim();
         UserInfo user = new UserInfo();
         user.setUserNo(userName);
         user.setPassWord(password);
-        if(BaseApplication.userInfo!=null) {
+        if (BaseApplication.userInfo != null) {
             user.setWarehouseID(BaseApplication.userInfo.getWarehouseID());
             if (user.CheckUserAndPass()) {
                 user.setPassWord(DESUtil.encode(user.getPassWord()));
@@ -218,79 +213,87 @@ public class Login extends BaseActivity {
                 LogUtil.WriteLog(Login.class, TAG, userJson);
                 Map<String, String> params = new HashMap<>();
                 params.put("UserJson", userJson);
-                params.put("languageType",LanguageUtil.getLanguageType(context));
+                params.put("languageType", LanguageUtil.getLanguageType(context));
                 RequestHandler.addRequestWithDialog(Request.Method.POST, TAG, getString(R.string.Msg_Login), context, mHandler, RESULT_GET_LOGIN_INFO, null, URLModel.GetURL().UserLoginADF, params, null);
             }
+        } else {
+            //临时
+//            BaseApplication.userInfo=new  UerInfo();
+//            BaseApplication.userInfo.setWarehouseName("多语言测试仓库");
+//            BaseApplication.userInfo.setUserNo("yyqTester");
+//                SharePreferUtil.SetUserShare(context, BaseApplication.userInfo);
+//            Intent intent = new Intent(context, MainActivity.class);
+//            startActivity(intent);
+//            return;
         }
     }
 
     @Event(R.id.btn_Setting)
-    private void btnSetting(View view){
-        startActivityLeft(new Intent(context,Setting.class));
+    private void btnSetting(View view) {
+        startActivityLeft(new Intent(context, Setting.class));
     }
 
-    void AnalysisJson(String result){
-        LogUtil.WriteLog(Login.class, TAG,result);
-        ReturnMsgModel<UerInfo> returnMsgModel = GsonUtil.getGsonUtil().fromJson(result, new TypeToken<ReturnMsgModel<UerInfo>>() {}.getType());
-        if(returnMsgModel.getHeaderStatus().equals("S")){
-            BaseApplication.userInfo=returnMsgModel.getModelJson();
+    void AnalysisJson(String result) {
+        LogUtil.WriteLog(Login.class, TAG, result);
+        ReturnMsgModel<UerInfo> returnMsgModel = GsonUtil.getGsonUtil().fromJson(result, new TypeToken<ReturnMsgModel<UerInfo>>() {
+        }.getType());
+        if (returnMsgModel.getHeaderStatus().equals("S")) {
+            BaseApplication.userInfo = returnMsgModel.getModelJson();
             BaseApplication.userInfo.setPDAPrintIP(URLModel.PrintIP);
-            if(lstWarehouse!=null && lstWarehouse.size()!=0)
+            if (lstWarehouse != null && lstWarehouse.size() != 0)
                 BaseApplication.userInfo.setLstWarehouse(lstWarehouse);
             BaseApplication.userInfo.setWarehouseName(txtWareHousName.getText().toString());
-            if( BaseApplication.userInfo.getReceiveAreaID()<=0){
-                MessageBox.Show( context,getResources().getString(R.string.Message_No_ReceiveAreaID));
-            }else if(BaseApplication.userInfo.getPickAreaID()<=0 && URLModel.isWMS){
-                MessageBox.Show( context,getResources().getString(R.string.Message_No_PickAreaID));
-            }else if(BaseApplication.userInfo.getToSampAreaNo()==null || BaseApplication.userInfo.getToSampAreaNo().equals("")){
-                MessageBox.Show( context,getResources().getString(R.string.Message_No_SampAreaNo));
-            }else if(BaseApplication.userInfo.getToSampWareHouseNo()==null || BaseApplication.userInfo.getToSampWareHouseNo().equals("")){
-                MessageBox.Show( context,getResources().getString(R.string.Message_No_QuanUserNo));
-            }
-            else if(BaseApplication.userInfo.getLstMenu()==null || BaseApplication.userInfo.getLstMenu().size()==0){
-                MessageBox.Show( context,getResources().getString(R.string.Message_No_MenuList));
-            }
-            else{
+            if (BaseApplication.userInfo.getReceiveAreaID() <= 0) {
+                MessageBox.Show(context, getResources().getString(R.string.Message_No_ReceiveAreaID));
+            } else if (BaseApplication.userInfo.getPickAreaID() <= 0 && URLModel.isWMS) {
+                MessageBox.Show(context, getResources().getString(R.string.Message_No_PickAreaID));
+            } else if (BaseApplication.userInfo.getToSampAreaNo() == null || BaseApplication.userInfo.getToSampAreaNo().equals("")) {
+                MessageBox.Show(context, getResources().getString(R.string.Message_No_SampAreaNo));
+            } else if (BaseApplication.userInfo.getToSampWareHouseNo() == null || BaseApplication.userInfo.getToSampWareHouseNo().equals("")) {
+                MessageBox.Show(context, getResources().getString(R.string.Message_No_QuanUserNo));
+            } else if (BaseApplication.userInfo.getLstMenu() == null || BaseApplication.userInfo.getLstMenu().size() == 0) {
+                MessageBox.Show(context, getResources().getString(R.string.Message_No_MenuList));
+            } else {
                 SharePreferUtil.SetUserShare(context, BaseApplication.userInfo);
-                Intent intent=new Intent(context, MainActivity.class);
+                Intent intent = new Intent(context, MainActivity.class);
                 startActivity(intent);
             }
-        }else
-        {
+        } else {
             ToastUtil.show(returnMsgModel.getMessage());
         }
     }
 
-    void AnalysisGetWareHouseByUserADFJson(String result){
-        try{
-            LogUtil.WriteLog(Login.class, TAG_GetWareHouseByUserADF,result);
-            ReturnMsgModel<UerInfo> returnMsgModel =  GsonUtil.getGsonUtil().fromJson(result, new TypeToken<ReturnMsgModel<UerInfo>>() {}.getType());
-            if(returnMsgModel.getHeaderStatus().equals("S")){
-                BaseApplication.userInfo=returnMsgModel.getModelJson();
-                if( BaseApplication.userInfo.getLstWarehouse()==null){
-                   MessageBox.Show(context,getResources().getString(R.string.Message_No_WhareHouse));
+    void AnalysisGetWareHouseByUserADFJson(String result) {
+        try {
+            LogUtil.WriteLog(Login.class, TAG_GetWareHouseByUserADF, result);
+            ReturnMsgModel<UerInfo> returnMsgModel = GsonUtil.getGsonUtil().fromJson(result, new TypeToken<ReturnMsgModel<UerInfo>>() {
+            }.getType());
+            if (returnMsgModel.getHeaderStatus().equals("S")) {
+                BaseApplication.userInfo = returnMsgModel.getModelJson();
+                if (BaseApplication.userInfo.getLstWarehouse() == null) {
+                    MessageBox.Show(context, getResources().getString(R.string.Message_No_WhareHouse));
                     CommonUtil.setEditFocus(edtUserName);
-                }else{
+                } else {
                     SelectWareHouse();
                     CommonUtil.setEditFocus(edtPassword);
                 }
-            }else
-            {
-                MessageBox.Show(context,returnMsgModel.getMessage());
+            } else {
+                MessageBox.Show(context, returnMsgModel.getMessage());
                 CommonUtil.setEditFocus(edtUserName);
             }
 
-        }catch (Exception ex){
+        } catch (Exception ex) {
             MessageBox.Show(context, ex.getMessage());
             CommonUtil.setEditFocus(edtUserName);
         }
     }
 
-    void SelectWareHouse(){
-        if (BaseApplication.userInfo==null || BaseApplication.userInfo.getLstWarehouse() == null) return;
+    void SelectWareHouse() {
+        if (BaseApplication.userInfo == null || BaseApplication.userInfo.getLstWarehouse() == null)
+            return;
         List<String> wareHouses = new ArrayList<String>();
-        lstWarehouse=BaseApplication.userInfo.getLstWarehouse();
-        if(BaseApplication.userInfo.getLstWarehouse().size()>1) {
+        lstWarehouse = BaseApplication.userInfo.getLstWarehouse();
+        if (BaseApplication.userInfo.getLstWarehouse().size() > 1) {
             for (WareHouseInfo warehouse : BaseApplication.userInfo.getLstWarehouse()) {
                 if (warehouse.getWareHouseName() != null && !warehouse.getWareHouseName().equals("")) {
                     wareHouses.add(warehouse.getWareHouseName());
@@ -309,10 +312,10 @@ public class Login extends BaseActivity {
                             txtWareHousName.setText(select_item);
                             BaseApplication.userInfo.setWarehouseID(SelectWareHouseID);
                             BaseApplication.userInfo.setWarehouseName(select_item);
-                         dialog.dismiss();
+                            dialog.dismiss();
                         }
                     }).show();
-        }else{
+        } else {
             SelectWareHouseID = BaseApplication.userInfo.getLstWarehouse().get(0).getID();
             txtWareHousName.setText(BaseApplication.userInfo.getLstWarehouse().get(0).getWareHouseName());
             BaseApplication.userInfo.setWarehouseID(SelectWareHouseID);
@@ -321,15 +324,15 @@ public class Login extends BaseActivity {
     }
 
 
-    void GetWareHouse(){
-        String userNo=edtUserName.getText().toString().trim();
-        if(!userNo.isEmpty()) {
+    void GetWareHouse() {
+        String userNo = edtUserName.getText().toString().trim();
+        if (!userNo.isEmpty()) {
             keyBoardCancle();
             final Map<String, String> params = new HashMap<String, String>();
             params.put("UserNo", userNo);
-            params.put("languageType",LanguageUtil.getLanguageType(context));
+            params.put("languageType", LanguageUtil.getLanguageType(context));
             LogUtil.WriteLog(Login.class, TAG_GetWareHouseByUserADF, userNo);
-            RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetWareHouseByUserADF, getString(R.string.Msg_GetWareHouse), context, mHandler, RESULT_GetWareHouseByUserADF, null,  URLModel.GetURL().GetWareHouseByUserADF, params, null);
+            RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_GetWareHouseByUserADF, getString(R.string.Msg_GetWareHouse), context, mHandler, RESULT_GetWareHouseByUserADF, null, URLModel.GetURL().GetWareHouseByUserADF, params, null);
         }
     }
 

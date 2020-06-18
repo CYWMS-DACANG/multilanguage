@@ -278,7 +278,7 @@ public class InnerMoveScan extends BaseActivity {
                 String ModelJson = GsonUtil.parseModelToJson(stockInfoModels);
                 params.put("UserJson", GsonUtil.parseModelToJson(BaseApplication.userInfo));
                 params.put("ModelJson", ModelJson);
-            params.put("languageType", LanguageUtil.getLanguageType(context));
+                  params.put("languageType", LanguageUtil.getLanguageType(context));
                 LogUtil.WriteLog(InnerMoveScan.class, TAG_SaveT_StockADF, ModelJson);
                 if(FunctionType==0)
                     RequestHandler.addRequestWithDialog(Request.Method.POST, TAG_SaveT_StockADF, getString(R.string.Msg_SaveT_StockADF), context, mHandler, RESULT_SaveT_StockADF, null, URLModel.isWMS ? URLModel.GetURL().SaveT_StockADF : URLModel.GetURL().SaveT_StockADF_Product, params, null);
